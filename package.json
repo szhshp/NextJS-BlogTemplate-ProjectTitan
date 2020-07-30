@@ -1,0 +1,47 @@
+{
+  "name": "project-titan",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build && next export",
+    "export": "next export",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.10.2",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "clsx": "^1.1.1",
+    "doctor-jones": "^1.0.2",
+    "emoji-mart": "^3.0.0",
+    "gray-matter": "^4.0.2",
+    "highlight.js": "^10.1.1",
+    "moment": "^2.27.0",
+    "next": "9.4.4",
+    "raw-loader": "^4.0.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-highlight": "^0.12.0",
+    "react-image-lightbox": "^5.1.1",
+    "react-markdown": "^4.3.1",
+    "tocbot": "^4.11.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.13",
+    "@types/react": "^16.9.36",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-config-react-app": "^3.0.7",
+    "eslint-plugin-flowtype": "^4.3.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "sass": "^1.26.10",
+    "typescript": "^3.9.5"
+  }
+}
