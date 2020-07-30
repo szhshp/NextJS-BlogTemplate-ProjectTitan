@@ -5,9 +5,9 @@ date : '2020-07-27'
 tags: ['Project','Gaia']
 ---
 
+- [TODO](#todo)
 - [Dev](#dev)
 - [Usage](#usage)
-  - [Sidebar](#sidebar)
   - [Post](#post)
     - [Post Header](#post-header)
     - [Post Content](#post-content)
@@ -17,11 +17,15 @@ tags: ['Project','Gaia']
     - [Static Pages with React Component](#static-pages-with-react-component)
     - [Static Pages With Markdown](#static-pages-with-markdown)
 - [Migrate From **Project Gaia** to **Project Titan**](#migrate-from-project-gaia-to-project-titan)
-- [TODO](#todo)
 - [Thanks](#thanks)
 
 
 Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan)
+
+## TODO
+
+- [ ] Custom Post Route
+- [ ] Language Selector
 
 ## Dev
 
@@ -31,10 +35,6 @@ Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-Project
 4. `npm run dev` or `yarn dev`
 
 ## Usage
-
-### Sidebar
-
-
 
 ### Post
 
@@ -85,13 +85,13 @@ Implements with [react-image-lightbox](https://github.com/frontend-collective/re
 
 ### Table of Content
 
-A responsive TOC will be automatically rendered on sidebar.
-
-![Responsive TOC](/demo/toc.png)
-
 You don't need to care about it.
 
 At all.
+
+A responsive TOC will be automatically rendered on sidebar.
+
+![Responsive TOC](/demo/toc.png)
 
 Implements with [tocbot](https://github.com/tscanlin/tocbot)
 
@@ -178,9 +178,6 @@ export default CustomPage;
    - Upload to your pages service
 3. (You can use **Github Action**, **Jenkins** for CI/CD or **Vercel** to simplify the build process)
 
-## TODO
-
-- [ ] Custom Post Route
 
 ## Thanks
 
