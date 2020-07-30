@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { locale } from "data/locale";
 
 export const useTranslater = () => {
-  const [lang, setLang] = useState("zh");
+  const [lang, setLang] = useState("en");
   const language = ["zh", "en"];
 
   /**
