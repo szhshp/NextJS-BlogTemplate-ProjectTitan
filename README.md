@@ -1,4 +1,17 @@
-# Project Titan
+
+
+
+<h1 align="center">
+  <a href="https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan">
+    Project Titan
+  </a>
+</h1>
+
+
+
+<p align="center">
+  Blog Template powered by MaterialUI x NextJS x Typescript.
+</p>
 
 <div align=center><img src="/public/github/logo.png"/></div>
 
