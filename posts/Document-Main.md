@@ -5,40 +5,46 @@ date : '2020-07-27'
 tags: ['Project','Gaia']
 ---
 
-- [TODO](#todo)
+- [Feature/TODO](#featuretodo)
 - [Dev](#dev)
-- [Usage](#usage)
-  - [Post](#post)
-    - [Post Header](#post-header)
-    - [Post Content](#post-content)
+- [Post](#post)
+  - [Post Header](#post-header)
+  - [Post Content](#post-content)
     - [Lightbox](#lightbox)
-  - [Table of Content](#table-of-content)
+    - [Code Highlighter](#code-highlighter)
+      - [Highlighter Theme](#highlighter-theme)
+    - [Table of Content](#table-of-content)
+      - [TOC Customization](#toc-customization)
+  - [Internationalization/i18n](#internationalizationi18n)
+  - [Locale Strings](#locale-strings)
+  - [Translation](#translation)
+  - [Set Language](#set-language)
   - [Static Pages](#static-pages)
-    - [Static Pages with React Component](#static-pages-with-react-component)
-    - [Static Pages With Markdown](#static-pages-with-markdown)
+  - [Static Pages with React Component](#static-pages-with-react-component)
+  - [Static Pages With Markdown](#static-pages-with-markdown)
 - [Migrate From **Project Gaia** to **Project Titan**](#migrate-from-project-gaia-to-project-titan)
 - [Thanks](#thanks)
 
 
 Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan)
 
-## TODO
+# Feature/TODO
 
 - [ ] Custom Post Route
+- [ ] Post Translation
 - [x] Language Selector
 
-## Dev
+# Dev
 
 1. Fork and STAR it please.
 2. Clone it locally
 3. `npm install` or `yarn`
 4. `npm run dev` or `yarn dev`
 
-## Usage
 
-### Post
+# Post
 
-#### Post Header 
+## Post Header 
 
 > Similar to YAML Header in Karmdown
 > 
@@ -46,7 +52,7 @@ Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-Project
 
 For post file `posts/jekyllmarkdowntoc.md` with below YAML Header:
 
-```js
+```
 ---
 title: 'Post Title' // (Required)
 categories: 'Life'  // (Optional)
@@ -63,7 +69,7 @@ Will be routed as
 /Life/2017/05/19/jekyllmarkdowntoc.html  // Avaiable on prod only
 ```
 
-#### Post Content
+## Post Content
 
 Check the files in `/posts` then you may understand everything.
 
@@ -71,23 +77,44 @@ Implements with [react-markdown](https://github.com/rexxars/react-markdown)
 
 You can custom the renderer in file `components\MarkdownRenderer.tsx`
 
-#### Lightbox
+### Lightbox
+
+You don't need to care about it, at all.
 
 It may show a lightbox when you click a pic in any post.
 
-<!-- TOC: lightbox example -->
-
-You don't need to care about it.
-
-At all.
+![Lightbox Example](/demo/lightbox.png)
 
 Implements with [react-image-lightbox](https://github.com/frontend-collective/react-image-lightbox)
 
+### Code Highlighter
+
+You don't need to care about it, at all.
+
+Example: 
+
+  ```js
+    const a = 100;
+    console.log(a);
+    const f = (v) => v + 5;
+    f(a);
+  ```
+
+Implements with [highlight.js](https://github.com/highlightjs/highlight.js)
+
+#### Highlighter Theme
+
+Change this line in `_app.tsx`:
+
+```js
+...
+import "highlight.js/styles/monokai.css";
+...
+```
+
 ### Table of Content
 
-You don't need to care about it.
-
-At all.
+You don't need to care about it, at all.
 
 A responsive TOC will be automatically rendered on sidebar.
 
@@ -95,9 +122,68 @@ A responsive TOC will be automatically rendered on sidebar.
 
 Implements with [tocbot](https://github.com/tscanlin/tocbot)
 
-### Static Pages
+#### TOC Customization
 
-#### Static Pages with React Component
+Check `Sidebar.tsx`:
+
+```js
+tocbot.init({
+  tocSelector: ".sidebarMid-Toc",
+  contentSelector: ".main",
+  headingSelector: "h1, h2, h3, h4, h5",
+  hasInnerContainers: true,
+});
+```
+
+## Internationalization/i18n
+
+## Locale Strings
+
+Prepare some translator set in `locale.ts`
+
+```js
+export const locale = {
+  siteTitle: {
+    zh: "泰坦計劃",
+    en: "Project Titan",
+  },
+}
+```
+
+## Translation
+
+Usage with translate function `translationString`:
+
+```js
+console.log(translationString({
+  textKey: "siteTitle",
+}))
+```
+
+Usage with hooks `useTranslater`:
+
+```jsx
+const Example = (): JSX.Element => {
+  const { translate, locale } = useTranslater();
+
+  return <div>{`${translate(locale.siteTitle)}`}</div>;
+};
+```
+
+## Set Language
+
+```jsx
+const Example = (): JSX.Element => {
+  const { setLanguage } = useTranslater();
+
+  return <div onClick={() => setLanguage("zh")}>Change Language</div>;
+};
+```
+
+
+## Static Pages
+
+## Static Pages with React Component
 
 Here is an example of a static page with **React components** as content:
 
@@ -124,7 +210,7 @@ Put these code to `/pages/about.tsx` then NextJS will route it as `/about` ([exa
 
 >See more about [Dynamic Routes](https://nextjs.org/docs/routing/dynamic-routes)
 
-#### Static Pages With Markdown
+## Static Pages With Markdown
 
 Here is an example of a static page with **pure markdown** as content:
 
@@ -132,13 +218,13 @@ Here is an example of a static page with **pure markdown** as content:
 const markdown = `
 # Title
 
-## Title?
+# Title?
 
-### Title!
+## Title!
 
-#### Title~
+## Title~
 
-##### Title-
+### Title-
 `;
 
 const CustomPage = (): JSX.Element => (
@@ -158,7 +244,7 @@ export default CustomPage;
 ```
 
 
-## Migrate From **Project Gaia** to **Project Titan**
+# Migrate From **Project Gaia** to **Project Titan**
 
 >That is easy to migrate
 
@@ -179,7 +265,7 @@ export default CustomPage;
 3. (You can use **Github Action**, **Jenkins** for CI/CD or **Vercel** to simplify the build process)
 
 
-## Thanks
+# Thanks
 
 - Vercel
 - NextJS
@@ -187,3 +273,4 @@ export default CustomPage;
 - tocbot
 - react-markdown
 - react-image-lightbox
+- Doctor Jones

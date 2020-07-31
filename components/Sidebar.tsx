@@ -64,7 +64,7 @@ const SideBar = ({
         tocbot.init({
           tocSelector: ".sidebarMid-Toc",
           contentSelector: ".main",
-          headingSelector: "h1, h2, h3",
+          headingSelector: "h1, h2, h3, h4, h5",
           hasInnerContainers: true,
         });
       }

@@ -1,4 +1,4 @@
-export const backgroundPicture = "https://s1.ax1x.com/2020/07/29/aZVfeK.md.jpg";
+export const backgroundPicture = "https://s1.ax1x.com/2020/07/29/aZVfeK.jpg";
 
 export const buttonSet = [
   [
