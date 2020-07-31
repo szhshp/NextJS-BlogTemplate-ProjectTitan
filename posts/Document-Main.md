@@ -25,7 +25,7 @@ Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-Project
 ## TODO
 
 - [ ] Custom Post Route
-- [ ] Language Selector
+- [x] Language Selector
 
 ## Dev
 
