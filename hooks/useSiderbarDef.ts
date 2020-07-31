@@ -6,7 +6,7 @@ import { useTranslater } from "hooks/useTranslator";
 
 /**
  * @name useSiderBarDef
- * @description A hook to return the sidebar defination
+ * @description A hook to get the sidebar defination
  */
 export const useSiderBarDef = (): SideBarDef => {
   const { setLanguage } = useTranslater();
