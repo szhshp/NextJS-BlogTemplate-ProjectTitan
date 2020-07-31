@@ -25,7 +25,7 @@ import * as tocbot from "tocbot";
 import theme from "types/theme";
 import { useTranslater } from "hooks/useTranslator";
 import { logger } from "utils/logger";
-import { useSiderBarDef } from "hooks/useSiderBarDef";
+import { useSiderBarDef } from "hooks/sideBarDef";
 
 /**
  * @name allyProps
