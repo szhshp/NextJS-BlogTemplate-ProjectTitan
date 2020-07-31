@@ -16,7 +16,6 @@ import {
 import { ExpandMore, ExpandLess } from "@material-ui/icons";
 import React, { useEffect } from "react";
 import { SideBarLink, SideBarSubLink, SideBarProps } from "types/sidebarTypes";
-import { sidebarDef } from "data/sidebar";
 import { useStyles } from "styles/styles";
 import { useRouter } from "next/router";
 import { SITE_CONFIG } from "data/config";
@@ -25,6 +24,8 @@ import LinkTab from "components/LinkTab";
 import * as tocbot from "tocbot";
 import theme from "types/theme";
 import { useTranslater } from "hooks/translator";
+import { logger } from "utils/logger";
+import { useSiderBarDef } from "hooks/useSiderBarDef";
 
 /**
  * @name allyProps
@@ -56,7 +57,7 @@ const SideBar = ({
   const router = useRouter();
   const isScreenSmUp = useMediaQuery(theme.breakpoints.down("xs"));
   const { translate, locale } = useTranslater();
-
+  const sidebarDef = useSiderBarDef();
   useEffect(() => {
     setTimeout(() => {
       if (showTOC) {
@@ -88,10 +89,16 @@ const SideBar = ({
             button
             key={link.link}
             onClick={(): void => {
-              if (link.subLinks && link.subLinks.length > 0) {
-                openSubLinkList(link.title);
-              } else {
+              if (link.link) {
                 handleLinkOnClick(link.link);
+              } else if (link.subLinks) {
+                if (link.subLinks.length > 0) {
+                  openSubLinkList(link.title);
+                } else {
+                  logger("Error: No subLink found");
+                }
+              } else {
+                logger("Error: No link or subLink specfied for menu link");
               }
             }}
           >
@@ -116,7 +123,15 @@ const SideBar = ({
                     button
                     className="sidebarMenu-SubLink"
                     onClick={(): void => {
-                      handleLinkOnClick(subLink.link);
+                      if (subLink.link) {
+                        handleLinkOnClick(subLink.link);
+                      } else if (subLink.onClickSubLink) {
+                        subLink.onClickSubLink();
+                      } else {
+                        logger(
+                          "Error: No link or onClickEvent specfied for menu sub link",
+                        );
+                      }
                     }}
                   >
                     <ListItemText primary={subLink.textLeft} />
@@ -182,7 +197,12 @@ const SideBar = ({
                   aria-label="nav tabs"
                 >
                   <LinkTab label="Home" {...a11yProps(0)} />
-                  {showTOC && <LinkTab label={translate(locale.contentList)} {...a11yProps(1)} />}
+                  {showTOC && (
+                    <LinkTab
+                      label={translate(locale.contentList)}
+                      {...a11yProps(1)}
+                    />
+                  )}
                 </Tabs>
               </AppBar>
             </Grid>
@@ -198,7 +218,9 @@ const SideBar = ({
                   <Typography display="block" gutterBottom color="secondary">
                     {sidebarDef.name}
                   </Typography>
-                  <Typography variant="subtitle2">{sidebarDef.motto}</Typography>
+                  <Typography variant="subtitle2">
+                    {sidebarDef.motto}
+                  </Typography>
                   {subMenuList}
                 </>
               </TabPanel>

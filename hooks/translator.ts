@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { locale } from "data/locale";
+import { useRouter } from "next/router";
 
+/* TODO: function desc, return type */
 export const useTranslater = () => {
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState("zh");
   const language = ["zh", "en"];
+  const router = useRouter();
 
   /**
    * @name getLanguage
@@ -14,7 +17,7 @@ export const useTranslater = () => {
     /* Sometimes navigator language may return zh-CN or en-US, split with '-' and get first elem */
     const defaultLang = (localStorageLang || navigator.language).split("-")[0];
     /* If language not exists then return default */
-    return (language.indexOf(defaultLang) > -1) ? defaultLang : "zh";
+    return language.indexOf(defaultLang) > -1 ? defaultLang : "zh";
   };
 
   /**
@@ -22,9 +25,14 @@ export const useTranslater = () => {
    * @description Set the language
    * @param languageToSet
    */
-  const setLanguage = (languageToSet: string): void => localStorage.setItem("lang", languageToSet);
+  const setLanguage = (languageToSet: string): void => {
+    localStorage.setItem("lang", languageToSet);
+    router.reload();
+  };
 
-  const translate = (translation: { [id: string]: string }): string => (translation[lang] ? translation[lang] : "[ERROR! TRANSLATE FAILED in translator.ts]");
+  const translate = (translation: { [id: string]: string }): string => (translation[lang]
+    ? translation[lang]
+    : "[ERROR! TRANSLATE FAILED in translator.ts]");
 
   useEffect(() => {
     setLang(getLanguage());

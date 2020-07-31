@@ -22,7 +22,7 @@ export type SideBarDef = {
  */
 export type SideBarLink = {
   title: string;
-  link: string;
+  link?: string;
   icon: string;
   subLinks?: SideBarSubLink[];
 };
@@ -35,8 +35,9 @@ export type SideBarLink = {
  */
 export type SideBarSubLink = {
   textLeft: string;
-  textRight: string;
-  link: string;
+  textRight?: string;
+  link?: string;
+  onClickSubLink?: () => JSX.Element | void;
 };
 
 /**
