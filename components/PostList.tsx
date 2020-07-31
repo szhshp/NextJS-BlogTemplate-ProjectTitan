@@ -15,7 +15,7 @@ import { useState } from "react";
 import HeaderDivider from "components/HeaderDivider";
 import Link from "next/link";
 import theme from "types/theme";
-import { useTranslater } from "hooks/translator";
+import { useTranslater } from "hooks/useTranslator";
 
 /**
  * @interface PostListProps

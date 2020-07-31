@@ -3,7 +3,7 @@ import {
   Grid, Typography, ButtonGroup, Button, Box,
 } from "@material-ui/core";
 import { SITE_CONFIG } from "data/config";
-import { useTranslater } from "hooks/translator";
+import { useTranslater } from "hooks/useTranslator";
 import { buttonSet } from "data/jumbotron";
 
 /**

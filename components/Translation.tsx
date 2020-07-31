@@ -1,4 +1,4 @@
-import { useTranslater } from "hooks/translator";
+import { useTranslater } from "hooks/useTranslator";
 
 /**
  * @name TranslationString

@@ -9,7 +9,7 @@ import Content from "components/Content";
 import HeaderDivider from "components/HeaderDivider";
 import CommentBox from "components/CommentBox";
 import { MarkdownRenderer } from "components/MarkdownRenderer";
-import { useTranslater } from "hooks/translator";
+import { useTranslater } from "hooks/useTranslator";
 import Link from "next/link";
 import dj from "doctor-jones";
 import { useEffect } from "react";

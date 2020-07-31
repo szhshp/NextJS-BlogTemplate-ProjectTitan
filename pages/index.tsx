@@ -8,7 +8,7 @@ import Content from "components/Content";
 import { postSet } from "utils/getPost";
 import Head from "next/head";
 import { arrCategories } from "utils/getTags";
-import { useTranslater } from "hooks/translator";
+import { useTranslater } from "hooks/useTranslator";
 
 const DEBUG_MODE_SINGLE_PAGE = 0;
 

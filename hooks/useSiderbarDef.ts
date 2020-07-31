@@ -2,7 +2,7 @@ import { SideBarDef } from "types/sidebarTypes";
 import { postSet } from "utils/getPost";
 import { arrTags, arrCategories } from "utils/getTags";
 import { SITE_CONFIG } from "data/config";
-import { useTranslater } from "hooks/translator";
+import { useTranslater } from "hooks/useTranslator";
 
 /**
  * @name useSiderBarDef
