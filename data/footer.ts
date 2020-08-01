@@ -13,7 +13,16 @@ export const footerDef: FooterDef = {
     },
     {
       attr: {
-        text: "Vi Director",
+        text: "Vi Director (Primary)",
+      },
+      value: {
+        text: "Project Titan",
+        link: "https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan",
+      },
+    },
+    {
+      attr: {
+        text: "Vi Director (Secondary)",
       },
       value: {
         text: "Material UI",
