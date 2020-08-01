@@ -16,12 +16,12 @@ tags: ['Project','Gaia']
     - [Table of Content](#table-of-content)
       - [TOC Customization](#toc-customization)
   - [Internationalization/i18n](#internationalizationi18n)
-  - [Locale Strings](#locale-strings)
-  - [Translation](#translation)
-  - [Set Language](#set-language)
+    - [Add Locale Strings](#add-locale-strings)
+    - [Display Translation](#display-translation)
+    - [Set Language](#set-language)
   - [Static Pages](#static-pages)
-  - [Static Pages with React Component](#static-pages-with-react-component)
-  - [Static Pages With Markdown](#static-pages-with-markdown)
+    - [Static Pages with React Component](#static-pages-with-react-component)
+    - [Static Pages With Markdown](#static-pages-with-markdown)
 - [Migrate From **Project Gaia** to **Project Titan**](#migrate-from-project-gaia-to-project-titan)
 - [Thanks](#thanks)
 
@@ -36,7 +36,7 @@ Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-Project
 
 # Dev
 
-1. Fork and STAR it please.
+1. Fork and STAR it, please.
 2. Clone it locally
 3. `npm install` or `yarn`
 4. `npm run dev` or `yarn dev`
@@ -48,7 +48,7 @@ Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-Project
 
 > Similar to YAML Header in Karmdown
 > 
-> YAML Header is required for all post.
+> YAML Header is required for all posts.
 
 For post file `posts/jekyllmarkdowntoc.md` with below YAML Header:
 
@@ -81,7 +81,7 @@ You can custom the renderer in file `components\MarkdownRenderer.tsx`
 
 You don't need to care about it, at all.
 
-It may show a lightbox when you click a pic in any post.
+It may show the lightbox on click of a image in any post.
 
 ![Lightbox Example](/demo/lightbox.png)
 
@@ -104,19 +104,17 @@ Implements with [highlight.js](https://github.com/highlightjs/highlight.js)
 
 #### Highlighter Theme
 
-Change this line in `_app.tsx`:
+Change the css in `_app.tsx`:
 
 ```js
-...
 import "highlight.js/styles/monokai.css";
-...
 ```
 
 ### Table of Content
 
 You don't need to care about it, at all.
 
-A responsive TOC will be automatically rendered on sidebar.
+A responsive TOC will be automatically rendered in the sidebar.
 
 ![Responsive TOC](/demo/toc.png)
 
@@ -124,7 +122,7 @@ Implements with [tocbot](https://github.com/tscanlin/tocbot)
 
 #### TOC Customization
 
-Check `Sidebar.tsx`:
+Check the attributes in `Sidebar.tsx`:
 
 ```js
 tocbot.init({
@@ -137,9 +135,9 @@ tocbot.init({
 
 ## Internationalization/i18n
 
-## Locale Strings
+### Add Locale Strings
 
-Prepare some translator set in `locale.ts`
+You can add translation set in `locale.ts`
 
 ```js
 export const locale = {
@@ -150,7 +148,7 @@ export const locale = {
 }
 ```
 
-## Translation
+### Display Translation
 
 Usage with translate function `translationString`:
 
@@ -170,7 +168,7 @@ const Example = (): JSX.Element => {
 };
 ```
 
-## Set Language
+### Set Language
 
 ```jsx
 const Example = (): JSX.Element => {
@@ -183,7 +181,7 @@ const Example = (): JSX.Element => {
 
 ## Static Pages
 
-## Static Pages with React Component
+### Static Pages with React Component
 
 Here is an example of a static page with **React components** as content:
 
@@ -210,7 +208,7 @@ Put these code to `/pages/about.tsx` then NextJS will route it as `/about` ([exa
 
 >See more about [Dynamic Routes](https://nextjs.org/docs/routing/dynamic-routes)
 
-## Static Pages With Markdown
+### Static Pages With Markdown
 
 Here is an example of a static page with **pure markdown** as content:
 
@@ -248,7 +246,7 @@ export default CustomPage;
 
 >That is easy to migrate
 
-1. Provide all posts with valid date in post header
+1. Provide all posts with valid date in the post header
 
     ```js
     ---
@@ -259,7 +257,7 @@ export default CustomPage;
     ---
     ```
 
-2. NextJS is different than Jekyll, you may need to build before deploy. 
+2. NextJS is different from Jekyll, you may need to build before deploy. 
    - Run `yarn run build` or `npm run build` to create a production version
    - Upload to your pages service
 3. (You can use **Github Action**, **Jenkins** for CI/CD or **Vercel** to simplify the build process)
