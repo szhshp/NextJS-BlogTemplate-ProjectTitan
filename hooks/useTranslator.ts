@@ -2,8 +2,16 @@ import { useEffect, useState } from "react";
 import { locale } from "data/locale";
 import { useRouter } from "next/router";
 
-/* TODO: function desc, return type */
-export const useTranslater = () => {
+/**
+ * @name useTranslater
+ * @description A hook returns methods for i18n
+ */
+export const useTranslater = (): {
+  translate: (translation: { [id: string]: string }) => string;
+  locale: typeof locale;
+  setLanguage: (languageToSet: string) => void;
+  getLanguage: () => string;
+} => {
   const [lang, setLang] = useState("zh");
   const language = ["zh", "en"];
   const router = useRouter();

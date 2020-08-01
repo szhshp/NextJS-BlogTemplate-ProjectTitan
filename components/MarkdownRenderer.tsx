@@ -30,7 +30,7 @@ import Lightbox from "react-image-lightbox";
 
 type BlockProps = {
   // nodeKey?: string;
-  children: any;
+  children: JSX.Element | string;
 };
 
 type ImageBlockProps = {
@@ -45,7 +45,7 @@ type LinkBlockProps = {
 } & BlockProps;
 
 type CodeBlockProps = {
-  value: any;
+  value: JSX.Element | string;
 } & BlockProps;
 
 type HeadingProps = {
@@ -60,9 +60,9 @@ const flatten = (text: string, child): typeof child => (typeof child === "string
  * @name code
  * @description Customized code block renderer
  */
-const code: NextPage<CodeBlockProps> = ({ value }: CodeBlockProps) => (
+const code: NextPage<CodeBlockProps> = ({ children }: CodeBlockProps) => (
   <div>
-    <Highlight>{value}</Highlight>
+    <Highlight>{children}</Highlight>
     <br />
   </div>
 );
@@ -120,7 +120,7 @@ const heading: NextPage<HeadingProps> = ({ children, level }: HeadingProps) => {
  */
 const link: NextPage<LinkBlockProps> = ({
   href,
-  title,
+  // title,
   children,
 }: LinkBlockProps) => (
   <Link href={href} rel="noopener">

@@ -1,4 +1,8 @@
-const Error = ({ statusCode }) => (
+type ErrorType = {
+  statusCode: number;
+};
+
+const Error = ({ statusCode }: ErrorType): JSX.Element => (
   <p>
     {statusCode
       ? `Oho! An error ${statusCode} occurred on server`
@@ -6,9 +10,21 @@ const Error = ({ statusCode }) => (
   </p>
 );
 
-Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
+Error.getInitialProps = ({
+  res,
+  err,
+}: {
+  res: any;
+  err: ErrorType;
+}): ErrorType => {
+  let rv: ErrorType = { statusCode: 404 };
+  if (res) {
+    rv = res;
+  } else if (err) {
+    rv = err;
+  }
+
+  return rv;
 };
 
 export default Error;

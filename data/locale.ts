@@ -1,4 +1,10 @@
-export const locale = {
+type Lang = "zh" | "en";
+
+export const locale: {
+  [key: string]: {
+    [key in Lang]: string;
+  };
+} = {
   siteTitle: {
     zh: "Project Titan",
     en: "Project Titan",
