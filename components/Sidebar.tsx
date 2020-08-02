@@ -91,6 +91,11 @@ const SideBar = ({
             onClick={(): void => {
               if (link.link) {
                 handleLinkOnClick(link.link);
+                if (link.subLinks) {
+                  logger(
+                    "Warning: Both link and subLink specfied for menu link, subLink will be ignored",
+                  );
+                }
               } else if (link.subLinks) {
                 if (link.subLinks.length > 0) {
                   openSubLinkList(link.title);
