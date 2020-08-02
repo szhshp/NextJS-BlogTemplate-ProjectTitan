@@ -52,17 +52,21 @@ type HeadingProps = {
   level: number;
 } & BlockProps;
 
-const flatten = (text: string, child): typeof child => (typeof child === "string"
-  ? text + child
-  : React.Children.toArray(child.props.children).reduce(flatten, text));
+const flatten = (text: string, child): typeof child =>
+  typeof child === "string"
+    ? text + child
+    : React.Children.toArray(child.props.children).reduce(flatten, text);
 
 /**
  * @name code
  * @description Customized code block renderer
  */
-const code: NextPage<CodeBlockProps> = ({ children }: CodeBlockProps) => (
+const code: NextPage<CodeBlockProps> = ({
+  value,
+  children,
+}: CodeBlockProps) => (
   <div>
-    <Highlight>{children}</Highlight>
+    <Highlight>{children || value}</Highlight>
     <br />
   </div>
 );
