@@ -149,7 +149,7 @@ const PostTemplate = ({
           </Grid>
         )}
         {DEBUG_MODE_SINGLE_PAGE >= 0 && showCommentBox && (
-          <Grid container className={classes.commentBox}>
+          <Grid container>
             <Grid item xs={12} spacing={3}>
               <HeaderDivider
                 title={translate(locale.messager)}
