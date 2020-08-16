@@ -23,7 +23,15 @@
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/szhielelp/NextJS-BlogTemplate-ProjectTitan">
 <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/szhielelp/NextJS-BlogTemplate-ProjectTitan">
 </p>
-                                                                                                                                         
+
+
+## Features
+
+- Markdown Rendering
+- Lightbox
+- Code Highlighter
+- Auto/Responsive Table of content
+- Internationalization
 
 ## Documents
 
