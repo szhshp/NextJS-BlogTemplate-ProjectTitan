@@ -26,11 +26,20 @@
 
 
 ## Features
-
-- Markdown Rendering
-- Lightbox
-- Code Highlighter
-- Auto/Responsive Table of content
+- Basic
+  - Markdown Rendering
+  - Jekyll/Hexo Seamlessly Migration
+  - Lightbox
+  - Code Highlighter
+  - Auto/Responsive TOC
+- Material UI Integration
+  - Mobile Responsive
+  - Consistent/Fluent Design
+- NextJS Integration
+  - Server Side Rendering
+  - React Hooks
+  - Styled Components
+- Typescript Support
 - Internationalization
 
 ## Documents
