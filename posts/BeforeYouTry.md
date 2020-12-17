@@ -10,10 +10,10 @@ Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-Project
 ## Where the story begins
 
 - I'm [szhshp](https://szhshp.org/). My first blog is created with Jekyll, it is named `Project Gaia` and released in [Github](https://github.com/szhielelp/JekyllTheme-ProjectGaia)
-- In July 2020 I built a similar template  with NextJS and it is named `Project Titan`
-- `Project Titan` originate from `Project Gaia`
+- In July 2020 I created a similar template `Project Titan` with NextJS
+- `Project Titan` is originated from `Project Gaia`
 - `Project Titan` is for more experienced developer/blogger. 
-- I tried to make it easy but it still requires basic knowledge of **Typescript** and **NextJS**
+- I tried to make it easy but it still require basic knowledge of **Typescript** and **NextJS**
 
 ## What's the differences? 
 
@@ -21,8 +21,8 @@ Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-Project
 
   + **EASY TO USE**
   + For beginner and light blogger
-  + Based on **Jekyll** + **jQuery** + **Bootstrap.**
-  + Traditional Stacks
+  + Based on **Jekyll** + **jQuery** + **Bootstrap**.
+  + Traditional Stacks (HTML + CSS + JS)
   + Easy to setup/config via [Pages](https://pages.github.com/) (or alternative services)
   + Do not require build process
 
@@ -34,13 +34,13 @@ Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-Project
 
 ## What's New in Project Titan?
 
-1. Brand New Redesigned Template
+1. Brand New & Redesigned UI
 2. All **React** Advantages 
    - Modularization
    - Virtual DOM for quick UI rendering
    - React Hooks for better performance 
 3. All **NextJS** Advantages 
-   - Pre-Rendering
+   - SSR & Pre-Rendering
    - SEO Friendly
    - Fully Extensible
 4. All **Material UI** Adcantages
