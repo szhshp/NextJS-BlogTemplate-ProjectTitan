@@ -15,7 +15,7 @@ import { useState } from "react";
 import HeaderDivider from "components/HeaderDivider";
 import Link from "next/link";
 import theme from "types/theme";
-import { useTranslater } from "hooks/useTranslator";
+import { useTranslator } from "hooks/useTranslator";
 
 /**
  * @interface PostListProps
@@ -45,7 +45,7 @@ const PostList = ({
   filterEnable = false,
   title,
 }: PostListProps): JSX.Element => {
-  const { translate, locale } = useTranslater();
+  const { translate, locale } = useTranslator();
   const classes = useStyles();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 

@@ -2,14 +2,14 @@ import { SideBarDef } from "types/sidebarTypes";
 import { postSet } from "utils/getPost";
 import { arrTags, arrCategories } from "utils/getTags";
 import { SITE_CONFIG } from "data/config";
-import { useTranslater } from "hooks/useTranslator";
+import { useTranslator } from "hooks/useTranslator";
 
 /**
- * @name useSiderBarDef
+ * @name useSidebarDef
  * @description A hook to get the sidebar defination
  */
-export const useSiderBarDef = (): SideBarDef => {
-  const { setLanguage } = useTranslater();
+export const useSidebarDef = (): SideBarDef => {
+  const { setLanguage } = useTranslator();
 
   return {
     headImage: SITE_CONFIG.headImageUrl,

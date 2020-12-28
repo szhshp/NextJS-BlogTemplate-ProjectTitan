@@ -1,4 +1,4 @@
-import { useTranslater } from "hooks/useTranslator";
+import { useTranslator } from "hooks/useTranslator";
 
 /**
  * @name TranslationString
@@ -6,7 +6,7 @@ import { useTranslater } from "hooks/useTranslator";
  * @param textKey: the key of translation set, check the attribute name in @file data\locale.ts
  */
 export const translationString = ({ textKey }: { textKey: string }): string => {
-  const { translate, locale } = useTranslater();
+  const { translate, locale } = useTranslator();
 
   return locale[textKey]
     ? translate(locale[textKey])

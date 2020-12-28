@@ -3,10 +3,10 @@ import HeaderDivider from "components/HeaderDivider";
 import { Grid, Box } from "@material-ui/core";
 import { arrTags, arrCategories } from "utils/getTags";
 import ChipGallery from "components/ChipGallery";
-import { useTranslater } from "hooks/useTranslator";
+import { useTranslator } from "hooks/useTranslator";
 
 const Categories = (): JSX.Element => {
-  const { translate, locale } = useTranslater();
+  const { translate, locale } = useTranslator();
 
   return (
     <PostTemplate

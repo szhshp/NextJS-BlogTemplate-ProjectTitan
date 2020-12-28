@@ -1,6 +1,5 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core";
 import { footerColor, sidebarColor } from "constants/colors";
-import { backgroundPicture } from "data/jumbotron";
 
 /**
  * @name useStyles
@@ -90,10 +89,10 @@ export const useStyles = makeStyles((theme: Theme) => {
       [theme.breakpoints.up("md")]: {
         height: "110vh",
       },
-      background: `url(${backgroundPicture}) no-repeat center center scroll`,
+      background: "url('/img/headerBg.jpg') no-repeat center center scroll",
       backgroundSize: "100% 100%",
       "& #blurBox": {
-        background: "#0000004d",
+        background: "#bcbcbc4d",
         padding: theme.spacing(3),
         flexGrow: 1,
         "& .jumbotron-Title": {

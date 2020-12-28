@@ -3,10 +3,10 @@ import { locale } from "data/locale";
 import { useRouter } from "next/router";
 
 /**
- * @name useTranslater
+ * @name useTranslator
  * @description A hook returns methods for i18n
  */
-export const useTranslater = (): {
+export const useTranslator = (): {
   translate: (translation: { [id: string]: string }) => string;
   locale: typeof locale;
   setLanguage: (languageToSet: string) => void;

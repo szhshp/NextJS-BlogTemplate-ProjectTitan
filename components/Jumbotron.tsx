@@ -3,7 +3,7 @@ import {
   Grid, Typography, ButtonGroup, Button, Box,
 } from "@material-ui/core";
 import { SITE_CONFIG } from "data/config";
-import { useTranslater } from "hooks/useTranslator";
+import { useTranslator } from "hooks/useTranslator";
 import { buttonSet } from "data/jumbotron";
 
 /**
@@ -12,7 +12,7 @@ import { buttonSet } from "data/jumbotron";
  */
 const Jumbotron = (): JSX.Element => {
   const classes = useStyles();
-  const { translate, locale } = useTranslater();
+  const { translate, locale } = useTranslator();
 
   return (
     <Grid container className={classes.jumbotron}>
@@ -20,10 +20,12 @@ const Jumbotron = (): JSX.Element => {
         <Typography variant="caption" gutterBottom className="jumbotron-Title">
           NextJS Blog Template by
           {" "}
-          <a href="http://szhshp.org/">Szhshp</a>
+          <a href="http://szhshp.org/" style={{ color: "#ff8c00" }}>
+            Szhshp
+          </a>
         </Typography>
         <Typography
-          variant="h1"
+          variant="h3"
           gutterBottom
           className="jumbotron-Title jumbotron-Title-Main"
         >

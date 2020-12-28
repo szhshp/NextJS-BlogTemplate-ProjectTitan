@@ -8,12 +8,12 @@ import Content from "components/Content";
 import { postSet } from "utils/getPost";
 import Head from "next/head";
 import { arrCategories } from "utils/getTags";
-import { useTranslater } from "hooks/useTranslator";
+import { useTranslator } from "hooks/useTranslator";
 
 const DEBUG_MODE_SINGLE_PAGE = 0;
 
 const Home = (): JSX.Element => {
-  const { translate, locale } = useTranslater();
+  const { translate, locale } = useTranslator();
 
   return (
     <Content>

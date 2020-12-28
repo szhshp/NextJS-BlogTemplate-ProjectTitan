@@ -158,11 +158,11 @@ console.log(translationString({
 }))
 ```
 
-Usage with hooks `useTranslater`:
+Usage with hooks `useTranslator`:
 
 ```jsx
 const Example = (): JSX.Element => {
-  const { translate, locale } = useTranslater();
+  const { translate, locale } = useTranslator();
 
   return <div>{`${translate(locale.siteTitle)}`}</div>;
 };
@@ -172,7 +172,7 @@ const Example = (): JSX.Element => {
 
 ```jsx
 const Example = (): JSX.Element => {
-  const { setLanguage } = useTranslater();
+  const { setLanguage } = useTranslator();
 
   return <div onClick={() => setLanguage("zh")}>Change Language</div>;
 };

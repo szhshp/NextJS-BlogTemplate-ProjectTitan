@@ -23,9 +23,9 @@ import TabPanel from "components/TabPanel";
 import LinkTab from "components/LinkTab";
 import * as tocbot from "tocbot";
 import theme from "types/theme";
-import { useTranslater } from "hooks/useTranslator";
+import { useTranslator } from "hooks/useTranslator";
 import { logger } from "utils/logger";
-import { useSiderBarDef } from "hooks/useSideBarDef";
+import { useSidebarDef } from "hooks/useSideBarDef";
 
 /**
  * @name allyProps
@@ -56,8 +56,8 @@ const SideBar = ({
   const [tabSelected, setTabSelected] = React.useState<number>(showTOC ? 1 : 0);
   const router = useRouter();
   const isScreenSmUp = useMediaQuery(theme.breakpoints.down("xs"));
-  const { translate, locale } = useTranslater();
-  const sidebarDef = useSiderBarDef();
+  const { translate, locale } = useTranslator();
+  const sidebarDef = useSidebarDef();
   useEffect(() => {
     setTimeout(() => {
       if (showTOC) {
