@@ -23,7 +23,6 @@ export const useSidebarDef = (): SideBarDef => {
       },
       {
         title: "Archives",
-        link: "/#postList",
         icon: "archive",
         subLinks: [
           {
