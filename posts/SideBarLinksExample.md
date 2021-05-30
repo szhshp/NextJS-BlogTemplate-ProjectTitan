@@ -1,11 +1,10 @@
 ---
 category: Tech
 title: 'Sidebar links Example'
-date : '2021-05-30'
-tags: ['Project','Titan']
+date : '2021-05-25'
+tags: ['Project', 'Titan']
 ---
 
-# This is a post
+# Post Example
 
-
-Edit the sidebar links in `data\staticPageRoutes.ts`
+You can link any post to a sidebar button on `data\staticPageRoutes.ts` .

@@ -15,8 +15,8 @@ color: 'primary'
 
 Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan)
 
-1. Fork and STAR it, please. 
-2. Go to [Vercel Official Site](https://vercel.com/), Login and click 'New Project'
+1. [Fork](https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan) and STAR it, please. 
+2. Go to [Vercel](https://vercel.com/), Login and click 'New Project'
 3. Import your forked repo
 4. Click `Continue` without any modification on configs.
 5. Finger crossed and wait it to deploy

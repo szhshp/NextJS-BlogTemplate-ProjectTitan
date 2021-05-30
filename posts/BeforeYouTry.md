@@ -1,7 +1,7 @@
 ---
 category: Tech
 title: 'Read Me Before You Try 😺'
-date : '2020-07-28'
+date : '2021-05-29'
 tags: ['Project', 'Gaia', 'Titan']
 ---
 

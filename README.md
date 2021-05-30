@@ -25,6 +25,23 @@
 </p>
 
 
+## News
+
+- **May 30th 2021**
+V1.1 @LotsOfOptimization @Personalization @ManyFixes @ACoolShowcase
+- **July 30th 2020**
+V1.0 Released!! Check it out -> [  Demo Page     ](https://titan.szhshp.org/)
+
+## Build your site in ONLY 5 STEPS
+
+- [  Try it out  ](https://titan.szhshp.org/tech/2021/05/30/Document-Main#Try-it-out)
+
+## Links
+
+- [  Demo Page     ](https://titan.szhshp.org/)
+- [Documents](https://titan.szhshp.org/tech/2020/07/27/Document-Main)
+
+
 ## Features
 
 - Personalization
@@ -47,14 +64,4 @@
 - Typescript Support
 - Internationalization
 
-## Documents
 
-- [  Demo Page     ](https://next-js-blog-template-project-titan.vercel.app/)
-- [Documents](https://next-js-blog-template-project-titan.vercel.app/tech/2021/05/30/Document-Main)
-
-## Change Log
-
-- **May 30th 2021**
-V1.1 @LotsOfOptimization @Personalization @ManyFixes @ACoolShowcase
-- **July 30th 2020**
-V1.0 Released!! Check it out -> [  Demo Page     ](https://next-js-blog-template-project-titan.vercel.app/)
