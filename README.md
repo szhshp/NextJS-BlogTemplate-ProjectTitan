@@ -26,6 +26,10 @@
 
 
 ## Features
+
+- Personalization
+  - Random Homepage Background
+  - Random Showcase
 - Basic
   - Markdown Rendering
   - Jekyll/Hexo Seamlessly Migration
@@ -49,5 +53,7 @@
 
 ## Change Log
 
+- **May 30th 2021**
+V1.1 @LotsOfOptimization @Personalization @ManyFixes @ACoolShowcase
 - **July 30th 2020**
 V1.0 Released!! Check it out -> [  Demo Page     ](https://next-js-blog-template-project-titan.vercel.app/)
