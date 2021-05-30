@@ -29,16 +29,16 @@ const Jumbotron = (): JSX.Element => {
             className="jumbotron-Title"
           >
             NextJS Blog Template by{" "}
-            <a href="http://szhshp.org/" style={{ color: "#ff8c00" }}>
+            <a href="https://szhshp.org/" style={{ color: "#ff8c00" }}>
               Szhshp
             </a>
           </Typography>
           <Typography
-            variant="h2"
+            variant="h1"
             gutterBottom
             className="jumbotron-Title jumbotron-Title-Main"
           >
-            <Box py={1}>{SITE_CONFIG.title.zh}</Box>
+            <Box py={1} color="primary">{SITE_CONFIG.title.zh}</Box>
           </Typography>
           <Box>
             {jumbotronButtonSet.map(({ color, links }, index) => (

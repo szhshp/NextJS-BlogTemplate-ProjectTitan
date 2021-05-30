@@ -134,6 +134,14 @@ const PostTemplate = ({
             </Grid>
           </Grid>
         )}
+        {COMPONENT_CONFIG.APP.MAIN_CONTENT.POST.COMMENTBOX && showCommentBox && (
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <HeaderDivider title={translate(locale.messager)} variant="h6" />
+              Put your comment box here
+            </Grid>
+          </Grid>
+        )}
       </Container>
     </Content>
   );

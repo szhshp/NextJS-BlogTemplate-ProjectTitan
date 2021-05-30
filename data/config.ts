@@ -9,7 +9,7 @@ export const SITE_CONFIG = {
   keywords: "szhshp,project titan",
   headImageUrl: HEAD_IMAGE_URL,
   author: MY_NAME,
-  motto: "6sheep, to be different. ",
+  motto: "To be different. ",
   host: "https://szhshp.org",
   font: {
     active: false /* Disabled 2020-12 */,

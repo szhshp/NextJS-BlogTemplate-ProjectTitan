@@ -6,32 +6,9 @@ tags: ['Project','Gaia']
 color: 'primary'
 ---
 
-- [Try it out](#try-it-out)
-- [Dev](#dev)
-- [What's New](#whats-new)
-  - [Random Homepage Background](#random-homepage-background)
-  - [Showcase Content](#showcase-content)
-- [Post](#post)
-  - [Post Header](#post-header)
-  - [Post Content](#post-content)
-    - [WebP Pictures Integration](#webp-pictures-integration)
-    - [Lightbox](#lightbox)
-    - [Code Highlighter](#code-highlighter)
-      - [Highlighter Theme](#highlighter-theme)
-    - [Table of Content](#table-of-content)
-      - [Sidebar Content](#sidebar-content)
-      - [Post Content](#post-content-1)
-      - [TOC Customization](#toc-customization)
-  - [Internationalization/i18n](#internationalizationi18n)
-    - [Locale Strings](#locale-strings)
-    - [Display Translation](#display-translation)
-    - [Set Language](#set-language)
-  - [Static Pages](#static-pages)
-    - [Static Pages with React Component](#static-pages-with-react-component)
-    - [Static Pages With Markdown](#static-pages-with-markdown)
-- [Migrate From **Project Gaia** to **Project Titan**](#migrate-from-project-gaia-to-project-titan)
-- [Thanks](#thanks)
+## Project Titan
 
+![](/github/logo.png)
 
 
 ## Try it out
@@ -44,6 +21,7 @@ Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-Project
 4. Click `Continue` without any modification on configs.
 5. Finger crossed and wait it to deploy
 
+Then you can add/update the post and push to github. Vercel will handle all CI/CD works for you. 
 
 ## Dev
 
@@ -66,15 +44,31 @@ const backgroundPictureLib = [
   "https://i.picsum.photos/id/888/1600/900.jpg?hmac=hw_TgE4fAZhZAjM5W_sTVY3_SpRrZU7vKw42ZtQt6mo",
   "https://i.picsum.photos/id/649/1600/900.jpg?hmac=MfwiBIOCS7_7zBii3bCvlKJIUO7rxdhOtDPhgvnn8tk",
 ];
+
 ```
 
+> Before you add background picture, add the pic host into config, see: [WebP Pictures Integration](#WebP-Pictures-Integration)
+
+
 In order to reduce the picture size, pictures are serves as webP and may display randomly on **each build.**
+
+
+![](/demo/homepage.png)
+
+
+> You may see different homepage background on each `git push` to your site. 
 
 ### Showcase Content
 
 You can set your favourite quotation on [data\showcaseContent.ts](../data/showcaseContent.ts):
 
 Quotations are displayed randomly on **each visit.**
+
+
+![](/demo/showCase.png)
+
+
+> You may see different show case content on each access to your site. 
 
 ## Post
 
@@ -85,21 +79,21 @@ Quotations are displayed randomly on **each visit.**
 For post file `posts/jekyllmarkdowntoc.md` with below YAML Header:
 
 ```
----
-title: 'Post Title' // (Required)
-categories: 'Life'  // (Optional)
-date : '2017-05-19' // (Required) 
-tags: ['A', 'B'] // (Optional, array of string) 
-color?: "primary" | "secondary" // (Optional) Determines the color in post list, default to grey 
-hide: true | false // (Optional as false, hide the post in Post List?) 
----
+  ---
+  title: 'Post Title' // (Required)
+  categories: 'Life'  // (Optional)
+  date : '2017-05-19' // (Required) 
+  tags: ['A', 'B'] // (Optional, array of string) 
+  color?: "primary" | "secondary" // (Optional) Determines the color in post list, default to grey 
+  hide: true | false // (Optional as false, hide the post in Post List?) 
+  ---
 ```
 
 Will be routed as
 
 ```
-/Life/2017/05/19/jekyllmarkdowntoc
-/Life/2017/05/19/jekyllmarkdowntoc.html  // Auto-redirect to above one
+  /Life/2017/05/19/jekyllmarkdowntoc
+  /Life/2017/05/19/jekyllmarkdowntoc.html  // Auto-redirect to above one
 ```
 
 ### Post Content
@@ -113,15 +107,15 @@ All images in posts will be progressed and serve as webP picture.
 You may need to put the image hosts into [next.config.js](../next.config.js)
 
 ``` JS
-images: {
-  domains: [
-    "szhshp.org",
-    "titan.szhshp.org",
-    // "yourImageDomain.com",
-    "i.picsum.photos",
-    "i.imgur.com",
-  ],
-},
+  images: {
+    domains: [
+      "szhshp.org",
+      "titan.szhshp.org",
+      // "yourImageDomain.com",
+      "i.picsum.photos",
+      "i.imgur.com",
+    ],
+  },
 ```
 
 
@@ -168,26 +162,23 @@ A responsive TOC will be automatically rendered in the sidebar.
 
 ![Responsive TOC](/demo/toc.png)
 
-Implements with [tocbot](https://github.com/tscanlin/tocbot)
-
 ##### Post Content
 
 An extra TOC will be automatically rendered at the top of each post.
 
 ![Responsive TOC](/demo/toc2.png)
 
-
 ##### TOC Customization
 
 Check the attributes in `Sidebar.tsx`:
 
 ```js
-tocbot.init({
-  tocSelector: ".sidebarMid-Toc",
-  contentSelector: ".main",
-  headingSelector: "h1, h2, h3, h4, h5",
-  hasInnerContainers: true,
-});
+  tocbot.init({
+    tocSelector: ".sidebarMid-Toc",
+    contentSelector: ".main",
+    headingSelector: "h1, h2, h3, h4, h5",
+    hasInnerContainers: true,
+  });
 ```
 
 ### Internationalization/i18n
@@ -197,17 +188,18 @@ tocbot.init({
 You can add translation set in `locale.ts`
 
 ```js
-export const locale = {
-  siteTitle: {
-    zh: "泰坦計劃",
-    en: "Project Titan",
-  },
-}
+  export const locale = {
+    siteTitle: {
+      zh: "泰坦計劃",
+      en: "Project Titan",
+    },
+  }
 ```
 
 #### Display Translation
 
 Usage with translate function `translationString`:
+
 
 ```js
 console.log(translationString({
@@ -249,7 +241,6 @@ const About = (): JSX.Element => (
       textKey: "about",
     })}`}
     showFooter={!DEBUG_MODE_SINGLE_PAGE}
-    showCommentBox={!DEBUG_MODE_SINGLE_PAGE}
     content={(
       <Box>
         <Box>JSX Here</Box>
@@ -306,12 +297,12 @@ export default CustomPage;
 1. Provide all posts with valid date in the post header
 
 ```js
----
-title: 'Post Title' // You already have this in Jekyll 
-categories: 'Life' 
-date : '2017-05-19' // Make sure you have this attribute, date should be in format YYYY-MM-DD
-tags: ['A', 'B'] 
----
+  ---
+  title: 'Post Title' // You already have this in Jekyll 
+  categories: 'Life' 
+  date : '2017-05-19' // Make sure you have this attribute, date should be in format YYYY-MM-DD
+  tags: ['A', 'B'] 
+  ---
 ```
 
 2. NextJS is different from Jekyll, you may need to build before deploy. 

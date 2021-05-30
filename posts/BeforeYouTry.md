@@ -5,13 +5,14 @@ date : '2020-07-28'
 tags: ['Project', 'Gaia', 'Titan']
 ---
 
-Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan)
 
 ## Where the story begins
 
+Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan)
+
 - I'm [szhshp](https://szhshp.org/). My first blog is created with Jekyll, it is named `Project Gaia` and released in [Github](https://github.com/szhielelp/JekyllTheme-ProjectGaia)
 - In July 2020 I created a similar template `Project Titan` with NextJS
-- `Project Titan` is originated from `Project Gaia`
+- The design of `Project Titan` is originated from `Project Gaia`
 - `Project Titan` is for more experienced developer/blogger. 
 - I tried to make it easy but it still require basic knowledge of **Typescript** and **NextJS**
 
