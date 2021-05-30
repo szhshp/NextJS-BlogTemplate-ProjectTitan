@@ -5,19 +5,16 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useStyles } from "styles/styles";
 import React from "react";
 import SideBar from "components/Sidebar";
-import Footer from "components/Footer";
 
 /**
- * @name ContentProps
+ * @interface ContentProps
  * @param children: The children elements to show as the main content
- * @param showFooter
  * @param showSidebar
  * @param showTOC
  *
  */
 interface ContentProps {
   children: JSX.Element[] | JSX.Element;
-  showFooter?: boolean;
   showSidebar?: boolean;
   showTOC?: boolean;
 }
@@ -29,7 +26,6 @@ interface ContentProps {
  */
 const Content = ({
   children,
-  showFooter = true,
   showSidebar = true,
   showTOC = false,
 }: ContentProps): JSX.Element => {
@@ -53,7 +49,6 @@ const Content = ({
         >
           <>
             {children}
-            {showFooter && <Footer />}
           </>
         </main>
       </Grid>

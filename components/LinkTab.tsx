@@ -4,7 +4,7 @@ import {
 
 interface StyledTabProps {
   label: string;
-  onChange?: (event: React.ChangeEvent<{}>, newValue: number) => void;
+  onChange?: (event: React.ChangeEvent<unknown>, newValue: number) => void;
 }
 
 const LinkTab = withStyles((theme: Theme) => createStyles({

@@ -1,29 +1,11 @@
 import { Post } from "types/postTypes";
 import matter from "gray-matter";
 import moment from "moment";
+import { logger } from "utils/logger";
 
 const colorLabelOrder = ["primary", "secondary"];
-
-/**
- * formatPostDate
- * @param dateString: raw date string
- *
- * Original Date Format:
- *  2015-3-2 (Legacy)
- *  2015-08-2 (Legacy)
- *  2015-08-03 (Standard)
- * Split with '-' and format all to at least 2 digits
- *  2015-3-2 -> 2015-03-02
- */
-export const formatPostDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return [
-    date.getFullYear(),
-    (date.getMonth() + 1).toString().padStart(2, "0"),
-    date.getDate().toString().padStart(2, "0"),
-  ].join("-");
-};
-
+const postDateFormatCandidate = ["YYYY-M-DD", "YYYY-M-D", "YYYY-MM-D", "YYYY-MM-DD"];
+const postDateFormatFormal = "YYYY-MM-DD";
 /**
  * getPost
  * @param context fileStream
@@ -37,8 +19,8 @@ export const getPost: {
   const values = keys.map(context);
 
   const data: Post[] = keys.map((key, index) => {
-    // Create slug from filename
-    const slug = key
+    // Create postRoute from filename
+    const postRoute = key
       .replace(/^.*[\\/]/, "")
       .split(".")
       .slice(0, -1)
@@ -48,19 +30,21 @@ export const getPost: {
     } = values[index];
     // Parse yaml metadata & markdownbody in document
     const document = matter(value.default);
-
-    // console.log("document.data.date: ", document.data.date);
-    // console.log(formatPostDate(document.data.date));
+    const date = moment(document.data.date, postDateFormatCandidate, true);
+    if (!date.isValid()) {
+      logger({
+        type: "error",
+        message: `Invalid Date From Header: ${document.data.date}, PostRoute: ${postRoute}`,
+      });
+    }
     return {
       frontmatter: {
         ...document.data,
-        date: formatPostDate(
-          document.data.date,
-        ) /* Format the date, see the formatPostDate() */,
+        date: date.format(postDateFormatFormal),
       },
 
       markdownBody: document.content,
-      slug,
+      postRoute,
     };
   });
   return data;
@@ -79,26 +63,23 @@ export const getLegacyPostPath: {
 } = (post) => {
   const {
     frontmatter: { date, category },
-    slug,
+    postRoute,
   } = post;
 
   const legacyPostPath = [
     "",
     category ? category.toLocaleLowerCase() : undefined,
     ...date.split("-"),
-    slug,
-  ].filter((e) => e !== undefined).join("/");
+    postRoute,
+  ]
+    .filter((e) => e !== undefined)
+    .join("/");
 
   return legacyPostPath;
 };
 
-/**
- * The directly post data, sort by date and color
- */
-export const posts: Post[] = getPost(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (require as any).context("../posts", true, /\.md$/),
-).sort((a, b) => {
+
+export const postSort = (a: Post, b: Post): number => {
   /* Sort: order by color, date */
   const colorA = a.frontmatter.color || "";
   const colorB = b.frontmatter.color || "";
@@ -107,21 +88,34 @@ export const posts: Post[] = getPost(
     colorLabelOrder.indexOf(colorB) - colorLabelOrder.indexOf(colorA)
     || moment(b.frontmatter.date).diff(moment(a.frontmatter.date))
   );
-});
+};
 
 /**
- * The filtered post data
+ * The directly ALL POST data, sort by date and color
  */
-export const postSet: {
-  normal: Post[];
-  life: Post[];
-  comic: Post[];
-} = {
-  normal: posts.filter(
-    (e) => ["Life", "Comic"].indexOf(e.frontmatter.category) === -1,
-  ),
-  life: posts.filter((e) => e.frontmatter.category === "Life"),
-  comic: posts.filter((e) => e.frontmatter.category === "Comic"),
-};
+export const posts: Post[] = getPost(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (require as any).context("../posts", true, /\.md$/),
+).sort(postSort);
+
+/**
+ * The posts data excluded hidden posts
+ */
+export const displayablePosts = posts.filter(
+  (e) => e.frontmatter.hide !== true,
+);
+
+export const getPostByCategory = ({
+  categories = [],
+  tags = [],
+}: {
+  categories?: string[];
+  tags?: string[];
+}): Post[] => displayablePosts
+  .filter((p) => (categories.length > 0 ? categories.includes(p.frontmatter.category) : true))
+  .filter((p) => (tags.length > 0
+    ? p.frontmatter.tags
+          && p.frontmatter.tags.filter((t) => tags.includes(t)).length > 0
+    : true));
 
 export const getPostPath = getLegacyPostPath;

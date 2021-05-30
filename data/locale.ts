@@ -1,3 +1,5 @@
+import { SITE_CONFIG } from "data/config";
+
 type Lang = "zh" | "en";
 
 export const locale: {
@@ -6,8 +8,23 @@ export const locale: {
   };
 } = {
   siteTitle: {
-    zh: "Project Titan",
-    en: "Project Titan",
+    ...SITE_CONFIG.title,
+  },
+  homepage: {
+    zh: "主页",
+    en: "Homepage",
+  },
+  language: {
+    zh: "切换语言",
+    en: "Change Language",
+  },
+  life: {
+    zh: "生活",
+    en: "Life",
+  },
+  techArchives: {
+    zh: "日志",
+    en: "Tech Posts",
   },
   postTitle: {
     zh: "文章标题",
@@ -60,6 +77,10 @@ export const locale: {
   documents: {
     zh: "文档",
     en: "DOCUMENTS",
+  },
+  demo: {
+    zh: "Demo Site",
+    en: "Demo Site",
   },
   loading: {
     zh: "正在加载",

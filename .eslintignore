@@ -1,0 +1,9 @@
+/out
+/.next
+/**/node_modules
+yarn.lock
+/node_modules
+/public
+/dist
+/.next
+/coverage

@@ -1,5 +1,6 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core";
 import { footerColor, sidebarColor } from "constants/colors";
+import { grey } from "@material-ui/core/colors";
 
 /**
  * @name useStyles
@@ -11,26 +12,28 @@ export const useStyles = makeStyles((theme: Theme) => {
   /**
    * @implements styles for fonts declared from fonts
    */
-  const drawerWidth = 250;
+  const drawerWidth = 300;
 
   /**
-   * reuse the header style from theme
+   * Override the body preset header styles with custom header styles from theme.ts
    * @file types\theme.ts
    */
-  const headerSpread = {};
-  ["h1", "h2", "h3", "h4", "h5", "h6"].forEach((e) => {
-    headerSpread[`& ${e}`] = theme.typography[e];
-  });
-
+  const headerSpread = ["h1", "h2", "h3", "h4", "h5", "h6"].reduce(
+    (prev: { [key: string]: string }, cur) => ({
+      ...prev,
+      [`& ${cur}`]: theme.typography[cur],
+    }),
+    {}
+  );
   const buildTransition = (
-    attribute,
+    attribute: string
   ): {
     transition: any;
   } => ({
     transition: [
       [
         theme.transitions.create(attribute, {
-          // easing: theme.transitions.easing.easeOut,
+          easing: theme.transitions.easing.easeIn,
           duration: theme.transitions.duration.leavingScreen,
         }),
       ],
@@ -60,19 +63,42 @@ export const useStyles = makeStyles((theme: Theme) => {
     },
     post: {
       "& .post-Content": {
-        minHeight: "40vh",
+        minHeight: "60vh",
         paddingBottom: "4rem",
+        "& .post-Content-Toc": {
+          "& ul": {
+            listStyle: "disc",
+            paddingLeft: theme.spacing(3),
+          },
+          "& li": {
+            textAlign: "left",
+          },
+        },
       },
       "& .post-Title": {
         color: theme.palette.primary.light,
+      },
+      "& .post-HeaderIcon": {
+        paddingX: theme.spacing(4),
+        color: [[theme.palette.grey["300"]], "!important"] as any,
       },
       ...headerSpread,
     },
     header: {
       padding: 0,
     },
+    headerIcon: {
+      padding: [["1px"], "!important"] as any,
+      color: [[theme.palette.grey["300"]], "!important"] as any,
+      borderRadius: "25%",
+    },
     divider: {
       // marginRight: "1.5rem",
+    },
+    dividerSearch: {
+      "& .MuiInputBase-input": {
+        padding: "4px 8px",
+      },
     },
     searchBox: {
       padding: "2px",
@@ -82,17 +108,21 @@ export const useStyles = makeStyles((theme: Theme) => {
       width: drawerWidth,
       flexShrink: 0,
     },
+    backgroundCover: {
+      zIndex: -1,
+      // background: `url(${backgroundPicture}) no-repeat center center scroll`,
+      // backgroundSize: "100% 100%",
+      // backgroundAttachment: "fixed",
+    },
     jumbotron: {
       display: "flex",
       alignItems: "center",
-      height: "60vh",
+      height: "100vh",
       [theme.breakpoints.up("md")]: {
         height: "110vh",
       },
-      background: "url('/img/headerBg.jpg') no-repeat center center scroll",
-      backgroundSize: "100% 100%",
       "& #blurBox": {
-        background: "#bcbcbc4d",
+        background: "#00000099",
         padding: theme.spacing(3),
         flexGrow: 1,
         "& .jumbotron-Title": {
@@ -133,8 +163,9 @@ export const useStyles = makeStyles((theme: Theme) => {
     },
     sideBar: {
       width: drawerWidth,
+      /* Material UI have some issues that custom styles are overridden, use !important as temp fix */
       background: [[sidebarColor], "!important"] as any,
-      overflowY: "hidden",
+      overflowY: [["hidden"], "!important"] as any,
       color: theme.palette.common.white,
       "& .MuiListItemIcon-root": {
         minWidth: "2rem",
@@ -169,16 +200,13 @@ export const useStyles = makeStyles((theme: Theme) => {
       "& .sidebar-Mid": {
         textAlign: "center",
         color: theme.palette.common.white,
-        "& .sidebarMid-HeadImage": {
-          width: 100,
-          height: 95,
-        },
         "& .sidebarMid-Toc": {
           fontSize: theme.typography.caption.fontSize,
           color: theme.palette.grey.A100,
           overflowY: "auto",
           "& ol.toc-list": {
             listStyle: "none",
+            paddingLeft: theme.spacing(1.5),
           },
           "& li.toc-list-item": {
             textAlign: "left",
@@ -186,7 +214,6 @@ export const useStyles = makeStyles((theme: Theme) => {
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
             "& a.toc-link": {
-              textDecoration: "none",
               "&:before": {
                 backgroundColor: "transparent",
               },
@@ -245,14 +272,8 @@ export const useStyles = makeStyles((theme: Theme) => {
         textOverflow: "ellipsis",
         textDecoration: "none",
         "& a": {
-          textDecoration: "none",
+          color: "inherit",
         },
-        [theme.breakpoints.down("xs")]: {
-          fontSize: "0.8rem",
-        },
-      },
-      "& .MuiTimeline-root": {
-        padding: [[0], "important"],
       },
       "& .MuiTimelineItem-missingOppositeContent:before": {
         flex: 0,
@@ -270,7 +291,7 @@ export const useStyles = makeStyles((theme: Theme) => {
           padding: theme.spacing(0.25, 1, 1),
           overflow: "hidden",
           textOverflow: "ellipsis",
-          whiteSpace: "nowrap",
+          // whiteSpace: "nowrap",
         },
       },
     },
@@ -294,13 +315,10 @@ export const useStyles = makeStyles((theme: Theme) => {
         },
       },
     },
-    commentList: {
-      "& .MuiListItem-root": {
-        padding: 0,
-      },
-      "& .MuiTypography-root": {
-        wordBreak: "break-all",
-      },
+    image: {
+      boxShadow: `1px 1px 3px ${theme.palette.grey["700"]} !important`,
+      border: `2px solid ${theme.palette.grey["700"]}`,
+      margin: "auto",
     },
     quote: {
       color: theme.palette.grey["600"],
@@ -313,31 +331,60 @@ export const useStyles = makeStyles((theme: Theme) => {
         fontSize: "0.8rem",
       },
     },
+    showcaseContent: {
+      minHeight: "60vh",
+      display: "flex",
+      alignItems: "center",
+    },
+    /* Main Markdown Container */
     markdownRenderer: {
+      "& h1": {
+        // "& h1, h2": {
+        borderBottom: `solid 1px ${theme.palette.grey["400"]}`,
+      },
       "& img": {
-        maxWidth: "80vh",
+        maxWidth: "100%",
         cursor: "pointer",
       },
       "& blockquote": {
+        opacity: 0.5,
         marginLeft: 0,
-        paddingLeft: "1rem",
+        paddingLeft: theme.spacing(2),
         borderLeft: `5px solid ${theme.palette.grey["400"]}`,
       },
       "& pre code": {
-        fontSize: theme.typography.fontSize,
+        fontSize: "0.9rem",
       },
-      "& .hide": {
-        /* black color, hide everything */
+      "& .ease": {
+        /* black color, ease everything */
         background: "#000",
       },
-      "& p,li": {
+      "& .hide": {
+        display: "none",
+      },
+      "& code:not(.hljs)": {
         /* inline code, not the code block with highlights */
-        "& code:not(.hljs)": {
-          fontSize: theme.typography.fontSize,
-          padding: "0.1rem 0.2em",
-          background: theme.palette.grey["400"],
-          borderRadius: theme.typography.pxToRem(2),
+        fontSize: "90%",
+        padding: "0.1rem 0.25em",
+        fontFamily: "inherit",
+        background: theme.palette.grey["300"],
+        borderRadius: theme.typography.pxToRem(2),
+      },
+      "& p": {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+      },
+      "& .todoItem": {
+        "& .todoCheckbox": {
+          padding: 0,
         },
+      },
+    },
+    trips: {
+      "& svg": {
+        touchAction: "none",
+        height: "400px",
+        border: `1px solid ${theme.palette.grey["400"]}`,
       },
     },
     loadingProgress: {
@@ -345,6 +392,31 @@ export const useStyles = makeStyles((theme: Theme) => {
       position: "sticky",
       top: "0",
       zIndex: 1300,
+    },
+    /**
+     use '@global' tag to prevent JSS renaming class name, all below styles will be global
+     @see https://cssinjs.org/jss-plugin-global/
+     */
+    "@global": {
+      html: {
+        fontSize: "15px",
+      },
+      a: {
+        textDecoration: "none",
+        color: theme.palette.primary.main,
+        "&:hover": {
+          textDecoration: "underline",
+        },
+      },
+      body: {
+        fontSize: "1rem",
+        margin: 0,
+      },
+      /* override for lightbox */
+      ".ril__toolbar": {
+        bottom: 0,
+        top: "unset",
+      },
     },
   });
 });

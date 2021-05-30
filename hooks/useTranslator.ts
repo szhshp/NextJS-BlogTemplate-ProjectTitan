@@ -2,17 +2,21 @@ import { useEffect, useState } from "react";
 import { locale } from "data/locale";
 import { useRouter } from "next/router";
 
+interface iTranslateProp {
+  (translation: { [id: string]: string }, _lang?: string): string;
+}
+
 /**
  * @name useTranslator
  * @description A hook returns methods for i18n
  */
 export const useTranslator = (): {
-  translate: (translation: { [id: string]: string }) => string;
+  translate: iTranslateProp;
   locale: typeof locale;
   setLanguage: (languageToSet: string) => void;
   getLanguage: () => string;
 } => {
-  const [lang, setLang] = useState("zh");
+  const [lang, setLang] = useState("en");
   const language = ["zh", "en"];
   const router = useRouter();
 
@@ -38,9 +42,10 @@ export const useTranslator = (): {
     router.reload();
   };
 
-  const translate = (translation: { [id: string]: string }): string => (translation[lang]
-    ? translation[lang]
-    : "[ERROR! TRANSLATE FAILED in translator.ts]");
+  const translate: iTranslateProp = (translation, _lang): string =>
+    translation && translation[_lang || lang]
+      ? translation[_lang || lang]
+      : "[ERROR! TRANSLATE FAILED: INVALID LOCALE KEY]";
 
   useEffect(() => {
     setLang(getLanguage());

@@ -1,10 +1,9 @@
 import { useStyles } from "styles/styles";
-import {
-  Grid, Typography, ButtonGroup, Button, Box,
-} from "@material-ui/core";
+import { Grid, Typography, ButtonGroup, Button, Box } from "@material-ui/core";
 import { SITE_CONFIG } from "data/config";
 import { useTranslator } from "hooks/useTranslator";
-import { buttonSet } from "data/jumbotron";
+import { backgroundPicture, jumbotronButtonSet } from "data/jumbotron";
+import Image from "next/image";
 
 /**
  * @name Jumbotron
@@ -15,55 +14,53 @@ const Jumbotron = (): JSX.Element => {
   const { translate, locale } = useTranslator();
 
   return (
-    <Grid container className={classes.jumbotron}>
-      <Box id="blurBox">
-        <Typography variant="caption" gutterBottom className="jumbotron-Title">
-          NextJS Blog Template by
-          {" "}
-          <a href="http://szhshp.org/" style={{ color: "#ff8c00" }}>
-            Szhshp
-          </a>
-        </Typography>
-        <Typography
-          variant="h3"
-          gutterBottom
-          className="jumbotron-Title jumbotron-Title-Main"
-        >
-          {SITE_CONFIG.title}
-        </Typography>
-        <Typography variant="caption" gutterBottom className="jumbotron-Title">
-          Powered by NextJS, Material UI
-        </Typography>
-        <Box mt={2}>
-          <ButtonGroup
-            size="small"
-            disableElevation
-            variant="contained"
-            className="jumbotron-buttonGroup"
-            color="primary"
+    <>
+      <Image
+        className={classes.backgroundCover}
+        src={backgroundPicture}
+        priority
+        layout="fill"
+        objectFit="cover"
+      />
+      <Grid container className={classes.jumbotron}>
+        <Box id="blurBox" flexGrow="1">
+          <Typography
+            gutterBottom
+            className="jumbotron-Title"
           >
-            <Button href="/tech/2020/07/27/Document-Main">
-              {`${translate(locale.documents)}`}
-            </Button>
-          </ButtonGroup>
-          {buttonSet.map((set, index) => (
-            <ButtonGroup
-              className="jumbotron-buttonGroup"
-              size="small"
-              disableElevation
-              key={`buttonSet${index}`}
-              variant="contained"
-            >
-              {set.map(({ label, link }) => (
-                <Button href={link} key={label}>
-                  {label}
-                </Button>
-              ))}
-            </ButtonGroup>
-          ))}
+            NextJS Blog Template by{" "}
+            <a href="http://szhshp.org/" style={{ color: "#ff8c00" }}>
+              Szhshp
+            </a>
+          </Typography>
+          <Typography
+            variant="h2"
+            gutterBottom
+            className="jumbotron-Title jumbotron-Title-Main"
+          >
+            <Box py={1}>{SITE_CONFIG.title.zh}</Box>
+          </Typography>
+          <Box>
+            {jumbotronButtonSet.map(({ color, links }, index) => (
+              <ButtonGroup
+                className="jumbotron-buttonGroup"
+                size="small"
+                disableElevation
+                key={`buttonSet${index}`}
+                color={color}
+                variant="contained"
+              >
+                {links.map(({ localeKey, link }) => (
+                  <Button href={link} key={localeKey}>
+                    {translate(locale[localeKey])}
+                  </Button>
+                ))}
+              </ButtonGroup>
+            ))}
+          </Box>
         </Box>
-      </Box>
-    </Grid>
+      </Grid>
+    </>
   );
 };
 

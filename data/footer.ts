@@ -52,7 +52,7 @@ export const footerDef: FooterDef = {
         text: "Co-Dev Engine",
       },
       value: {
-        text: "Git Pages, Vercel",
+        text: "Vercel",
       },
     },
   ],

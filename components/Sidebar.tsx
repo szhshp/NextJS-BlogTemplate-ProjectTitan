@@ -12,20 +12,21 @@ import {
   AppBar,
   Tabs,
   useMediaQuery,
+  Tooltip,
 } from "@material-ui/core";
 import { ExpandMore, ExpandLess } from "@material-ui/icons";
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { SideBarLink, SideBarSubLink, SideBarProps } from "types/sidebarTypes";
 import { useStyles } from "styles/styles";
-import { useRouter } from "next/router";
-import { SITE_CONFIG } from "data/config";
+import Router from "next/router";
 import TabPanel from "components/TabPanel";
 import LinkTab from "components/LinkTab";
 import * as tocbot from "tocbot";
 import theme from "types/theme";
 import { useTranslator } from "hooks/useTranslator";
 import { logger } from "utils/logger";
-import { useSidebarDef } from "hooks/useSideBarDef";
+import { useSiderBarData } from "hooks/useSiderBarData";
+import Image from "next/image";
 
 /**
  * @name allyProps
@@ -33,7 +34,7 @@ import { useSidebarDef } from "hooks/useSideBarDef";
  * @param index The index of sidebar tab option
  */
 const a11yProps = (
-  index: number,
+  index: number
 ): {
   id: string;
   "aria-controls": string;
@@ -42,9 +43,14 @@ const a11yProps = (
   "aria-controls": `nav-tabpanel-${index}`,
 });
 
+enum TabName {
+  MenuTab,
+  TOCTab,
+}
+
 /**
  * @name SideBar
- * @param {PostListProps}
+ * @param {SideBarProps}
  */
 const SideBar = ({
   drawerOpen,
@@ -53,23 +59,36 @@ const SideBar = ({
 }: SideBarProps): JSX.Element => {
   const classes = useStyles();
   const [subMenuSelected, setSubMenuSelected] = React.useState("");
-  const [tabSelected, setTabSelected] = React.useState<number>(showTOC ? 1 : 0);
-  const router = useRouter();
+  const [isTOCReady, setIsTOCReady] = React.useState(false);
+  const [tabSelected, setTabSelected] = React.useState<TabName>(
+    showTOC ? TabName.TOCTab : TabName.MenuTab
+  );
   const isScreenSmUp = useMediaQuery(theme.breakpoints.down("xs"));
   const { translate, locale } = useTranslator();
-  const sidebarDef = useSidebarDef();
+  const sidebarData = useSiderBarData();
+
   useEffect(() => {
-    setTimeout(() => {
-      if (showTOC) {
+    /* Only show TOC if props.showTOC is true */
+    if (showTOC) {
+      /* If TOC is not ready, init it */
+      if (!isTOCReady) {
+        /**
+         * @desc Init the toc bot on the sidebar
+         * @see https://github.com/tscanlin/tocbot
+         */
         tocbot.init({
           tocSelector: ".sidebarMid-Toc",
           contentSelector: ".main",
-          headingSelector: "h1, h2, h3, h4, h5",
+          headingSelector: "h1, h2, h3",
           hasInnerContainers: true,
         });
+        setIsTOCReady(true);
+      } else if (tabSelected === TabName.TOCTab) {
+        /* If TOC is ready and is visible, refresh it */
+        tocbot.refresh();
       }
-    }, 0);
-  }, []);
+    }
+  });
 
   const handleChange = (event, newValue: number): void => {
     setTabSelected(newValue);
@@ -77,43 +96,75 @@ const SideBar = ({
   const openSubLinkList = (subMenuTitle: string): void => {
     setSubMenuSelected(subMenuSelected === subMenuTitle ? "" : subMenuTitle);
   };
-  const handleLinkOnClick = (path: string): void => {
-    router.push(path);
+
+  /**
+   * @name handleLinkOnClick
+   * @desc redirect to specfic link
+   * @important If not filepath specfied, open a new window
+   */
+  const handleLinkOnClick = ({
+    filepath,
+    link,
+  }: {
+    filepath?: string;
+    link: string;
+  }): void => {
+    if (filepath) {
+      Router.push(filepath, link);
+    } else {
+      window.open(link);
+    }
   };
 
   const subMenuList = (
     <List component="nav" className={classes.sidebarMenu}>
-      {sidebarDef.links.map((link: SideBarLink) => (
-        <>
+      {sidebarData.links.map((link: SideBarLink) => (
+        <Fragment key={link.title}>
           <ListItem
             button
-            key={link.link}
             onClick={(): void => {
               if (link.link) {
-                handleLinkOnClick(link.link);
+                handleLinkOnClick({
+                  filepath: link.filepath,
+                  link: link.link,
+                });
                 if (link.subLinks) {
-                  logger(
-                    "Warning: Both link and subLink specfied for menu link, subLink will be ignored",
-                  );
+                  logger({
+                    type: "warn",
+                    message:
+                      "Warning: Both link and subLink specfied for menu link, subLink will be ignored",
+                  });
                 }
               } else if (link.subLinks) {
                 if (link.subLinks.length > 0) {
                   openSubLinkList(link.title);
                 } else {
-                  logger("Error: No subLink found");
+                  logger({
+                    type: "error",
+                    message: "No subLink found",
+                  });
                 }
               } else {
-                logger("Error: No link or subLink specfied for menu link");
+                logger({
+                  type: "error",
+                  message: "Error: No link or subLink found",
+                });
               }
             }}
           >
             <ListItemIcon>
               <Icon>{link.icon}</Icon>
             </ListItemIcon>
-            <ListItemText primary={link.title} />
-            {link.subLinks
-              && link.subLinks.length > 0
-              && (subMenuSelected === link.title ? (
+            {link.desc ? (
+              <Tooltip title={link.desc} placement="top">
+                <ListItemText primary={link.title} />
+              </Tooltip>
+            ) : (
+              <ListItemText primary={link.title} />
+            )}
+            {link.subLinks &&
+              link.subLinks.length > 0 &&
+              (subMenuSelected === link.title ? (
                 <ExpandLess />
               ) : (
                 <ExpandMore />
@@ -124,22 +175,31 @@ const SideBar = ({
               <List component="div" disablePadding>
                 {link.subLinks.map((subLink: SideBarSubLink) => (
                   <ListItem
-                    key={`${link.link}${subLink.link}`}
+                    key={`${link.title}${subLink.textLeft}`}
                     button
                     className="sidebarMenu-SubLink"
                     onClick={(): void => {
                       if (subLink.link) {
-                        handleLinkOnClick(subLink.link);
+                        handleLinkOnClick({
+                          filepath: subLink.filepath,
+                          link: subLink.link,
+                        });
                       } else if (subLink.onClickSubLink) {
                         subLink.onClickSubLink();
                       } else {
                         logger(
-                          "Error: No link or onClickEvent specfied for menu sub link",
+                          "Error: No link or onClickEvent specfied for menu sub link"
                         );
                       }
                     }}
                   >
-                    <ListItemText primary={subLink.textLeft} />
+                    {subLink.desc ? (
+                      <Tooltip title={subLink.desc} placement="top">
+                        <ListItemText primary={subLink.textLeft} />
+                      </Tooltip>
+                    ) : (
+                      <ListItemText primary={subLink.textLeft} />
+                    )}
                     <ListItemText
                       primary={subLink.textRight}
                       className="sidebarMenu-SubLink-TextRight"
@@ -149,7 +209,7 @@ const SideBar = ({
               </List>
             </Collapse>
           )}
-        </>
+        </Fragment>
       ))}
     </List>
   );
@@ -182,6 +242,10 @@ const SideBar = ({
         <>
           {/* For large screen */}
           <Drawer
+            transitionDuration={{
+              enter: 195,
+              exit: 375,
+            }}
             variant="persistent"
             anchor="right"
             open={drawerOpen}
@@ -195,13 +259,12 @@ const SideBar = ({
                   value={tabSelected}
                   centered
                   onChange={handleChange}
-                  action={(): void => {
-                    /* Required, otherwise toc may destroy when change tab */
-                    tocbot.refresh();
-                  }}
                   aria-label="nav tabs"
                 >
-                  <LinkTab label="Home" {...a11yProps(0)} />
+                  <LinkTab
+                    label={translate(locale.homepage)}
+                    {...a11yProps(0)}
+                  />
                   {showTOC && (
                     <LinkTab
                       label={translate(locale.contentList)}
@@ -213,24 +276,25 @@ const SideBar = ({
             </Grid>
 
             <Grid className="sidebar-Mid">
-              <TabPanel value={tabSelected} index={0}>
+              <TabPanel value={tabSelected} index={TabName.MenuTab}>
                 <>
                   <img
-                    className="sidebarMid-HeadImage"
-                    src={sidebarDef.headImage}
-                    alt={SITE_CONFIG.author}
+                    height={90}
+                    width={100}
+                    src={sidebarData.headImage}
+                    alt="szhshp"
                   />
                   <Typography display="block" gutterBottom color="secondary">
-                    {sidebarDef.name}
+                    {sidebarData.name}
                   </Typography>
                   <Typography variant="subtitle2">
-                    {sidebarDef.motto}
+                    {sidebarData.motto}
                   </Typography>
                   {subMenuList}
                 </>
               </TabPanel>
               {showTOC && (
-                <TabPanel value={tabSelected} index={1}>
+                <TabPanel value={tabSelected} index={TabName.TOCTab}>
                   <div className="sidebarMid-Toc" />
                 </TabPanel>
               )}

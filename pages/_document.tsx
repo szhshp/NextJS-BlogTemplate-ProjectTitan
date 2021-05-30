@@ -1,9 +1,8 @@
-import Document, {
-  Html, Head, Main, NextScript,
-} from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import theme from "types/theme";
 import { ServerStyleSheets } from "@material-ui/core";
 import React from "react";
+import { SITE_CONFIG } from "data/config";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -11,36 +10,38 @@ class MyDocument extends Document {
     return { ...initialProps };
   }
 
-  render() {
-    return (
-      <Html>
-        <style>
-          {`
-            body {
-              margin: 0;
-            }
-          `}
-        </style>
-        <Head>
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          {/* Do not put title here, title is different per page */}
-          <link rel="icon" href="/favicon.ico" />
+  render = (): JSX.Element => (
+    <Html>
+      <Head>
+        <meta name="theme-color" content={theme.palette.primary.main} />
+        {/* Do not put title here, title is managed per page */}
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/styles/materialIcon.css" />
+
+        {/* DNS Prefetch */}
+        {[
+          "titan.szhshp.org",
+          "i.picsum.photos",
+          "i.imgur.com",
+        ].map((e) => (
+          <link rel="dns-prefetch" href={e} key={e} />
+        ))}
+
+        {SITE_CONFIG.font.active === true && (
           <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="preload"
+            href={`/fonts/${SITE_CONFIG.font.fontName}.${SITE_CONFIG.font.fileExt}`}
+            as="font"
+            crossOrigin=""
           />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
+        )}
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
 }
 
 // `getInitialProps` belongs to `_document` (instead of `_app`),
@@ -72,9 +73,10 @@ MyDocument.getInitialProps = async (ctx) => {
   const sheets = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
 
-  ctx.renderPage = () => originalRenderPage({
-    enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
-  });
+  ctx.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+    });
 
   const initialProps = await Document.getInitialProps(ctx);
 

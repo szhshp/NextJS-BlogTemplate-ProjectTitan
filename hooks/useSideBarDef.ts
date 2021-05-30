@@ -1,8 +1,9 @@
 import { SideBarDef } from "types/sidebarTypes";
-import { postSet } from "utils/getPost";
 import { arrTags, arrCategories } from "utils/getTags";
 import { SITE_CONFIG } from "data/config";
 import { useTranslator } from "hooks/useTranslator";
+import { displayablePosts } from "utils/getPost";
+import { staticPageRoutes } from "data/staticPageRoutes";
 
 /**
  * @name useSidebarDef
@@ -27,7 +28,7 @@ export const useSidebarDef = (): SideBarDef => {
         subLinks: [
           {
             textLeft: "Post",
-            textRight: postSet.normal.length.toString(),
+            textRight: displayablePosts.length.toString(),
             link: "/#postList",
           },
           {
@@ -46,14 +47,9 @@ export const useSidebarDef = (): SideBarDef => {
         title: "Life",
         icon: "videogame_asset",
         subLinks: [
-          { textLeft: "Music", link: "/tech/2020/07/27/MainDocument" },
-          { textLeft: "Game", link: "/tech/2020/07/27/MainDocument" },
+          { textLeft: "Music", link: staticPageRoutes.music.link },
+          { textLeft: "Game", link: staticPageRoutes.game.link },
         ],
-      },
-      {
-        title: "About",
-        icon: "person",
-        subLinks: [{ textLeft: "About Me", link: "/about" }],
       },
       {
         title: "Language",

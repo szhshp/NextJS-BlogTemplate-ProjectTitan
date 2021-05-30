@@ -1,12 +1,11 @@
 import { ChipGalleryType } from "types/chipGalleryTypes";
-import { posts } from "utils/getPost";
+import { displayablePosts } from "utils/getPost";
 
 /* Tags/Categories Data */
-/* TODO: ChipGalleryType is not good naming */
 export const arrTags: ChipGalleryType = [];
 export const arrCategories: ChipGalleryType = [];
 
-posts.forEach((e) => {
+displayablePosts.forEach((e) => {
   if (e.frontmatter.tags) {
     e.frontmatter.tags.forEach((tag) => {
       if (!tag || tag.length === 0) return;
@@ -17,6 +16,7 @@ posts.forEach((e) => {
         arrTags.push({
           title: tag,
           count: 1,
+          link: `/categories?tag=${tag}`,
         });
       }
     });
@@ -31,6 +31,7 @@ posts.forEach((e) => {
       arrCategories.push({
         title: category,
         count: 1,
+        link: `/categories?category=${category}`,
       });
     }
   }

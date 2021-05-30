@@ -1,43 +1,53 @@
 /**
- * @name SideBarDef Sidebar Definition
- * @param headImage: URL path of the head image
- * @param links: Defination of links in sidebar
- * @param name: Author Name
- * @param motto
+ * @name SideBarSubLink Sidebar Sub Links Defination
+ * @param textLeft: Text float on left
+ * @param textRight: Text float on right
+ * @param link: Direct URL
+ * @param filepath: Sometimes you may need to set the filepath to prevent hard refresh
  */
-export type SideBarDef = {
-  headImage: string;
-  links: SideBarLink[];
-  name: string;
-  motto: string;
+export type SideBarSubLink = {
+  textLeft: string;
+  textRight?: string;
+  desc?: string;
+  link?: string;
+  filepath?: string;
+  onClickSubLink?: () => JSX.Element | void;
 };
 
 /**
  * @name SideBarLink Sidebar Links Defination
  * @param title: Link title
  * @param link: Link url
+ * @param filepath: file path under '/page', you may need to set the filepath to prevent hard refresh
+ *  if no filepath specfied, we may open link in new window
  * @param icon: Link icon
+ * @param desc: Desc shows on the tooltip
  *  @see Icons https://google.github.io/material-design-icons/#getting-icons
  * @param subLinks: Sub Links Defination
  */
 export type SideBarLink = {
   title: string;
   link?: string;
+  filepath?: string;
+  desc?: string;
   icon: string;
   subLinks?: SideBarSubLink[];
 };
 
 /**
- * @name SideBarSubLink Sidebar Sub Links Defination
- * @param textLeft: Text float on left
- * @param textRight: Text float on right
- * @param link: Link url
+ * @name SideBarData Sidebar Definition
+ * @param headImage: URL path of the head image
+ * @param links: Defination of links in sidebar
+ * @param desc: Desc shows on the tooltip
+ * @param name: Author Name
+ * @param motto
  */
-export type SideBarSubLink = {
-  textLeft: string;
-  textRight?: string;
-  link?: string;
-  onClickSubLink?: () => JSX.Element | void;
+export type SideBarData = {
+  headImage: string;
+  links: SideBarLink[];
+  desc?: string;
+  name: string;
+  motto: string;
 };
 
 /**

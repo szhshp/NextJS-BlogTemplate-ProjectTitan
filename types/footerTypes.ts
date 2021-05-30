@@ -1,7 +1,3 @@
-export type FooterDef = {
-  [attr: string]: FooterTable[];
-};
-
 export type FooterTable = {
   attr: {
     text: string;
@@ -11,4 +7,8 @@ export type FooterTable = {
     text: string;
     link?: string;
   };
+};
+
+export type FooterDef = {
+  [attr: string]: FooterTable[];
 };
