@@ -7,18 +7,6 @@ export const staticPageRoutes = {
     link: "/#postList",
     filepath: "/index",
   },
-  reading: {
-    link: "/tech/2021/05/30/SideBarLinksExample",
-    filepath: "/[...postRoute]",
-  },
-  music: {
-    link: "/tech/2021/05/30/SideBarLinksExample",
-    filepath: "/[...postRoute]",
-  },
-  footPrint: {
-    link: "/tech/2021/05/30/SideBarLinksExample",
-    filepath: "/[...postRoute]",
-  },
   aboutMe: {
     link: "/tech/2021/05/30/SideBarLinksExample",
     filepath: "/[...postRoute]",

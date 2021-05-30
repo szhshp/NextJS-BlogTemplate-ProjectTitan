@@ -42,7 +42,7 @@ export const jumbotronButtonSet: {
     links: [
       {
         localeKey: "whatsnew",
-        link: "/tech/2021/05/30/Document-Main",
+        link: "/tech/2021/05/30/Document-Main#Dev",
       },
       { localeKey: "demo", link: "https://szhshp.org" },
       {

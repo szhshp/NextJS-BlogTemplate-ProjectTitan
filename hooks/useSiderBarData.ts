@@ -49,53 +49,10 @@ export const useSiderBarData = (): SideBarData => {
         ],
       },
       {
-        title: "Life",
-        icon: "videogame_asset",
-        desc: translate(locale.life),
-        subLinks: [
-          {
-            textLeft: "Music",
-            desc: translate(locale.music),
-            ...staticPageRoutes.music,
-          },
-          {
-            textLeft: "Reading",
-            desc: translate(locale.reading),
-            ...staticPageRoutes.reading,
-          },
-          {
-            textLeft: "Footprint",
-            desc: translate(locale.footprint),
-            ...staticPageRoutes.footPrint,
-          },
-        ],
-      },
-      {
         title: "About",
         icon: "person",
         desc: translate(locale.about),
-        subLinks: [
-          {
-            textLeft: "Projects",
-            desc: translate(locale.myPublicProjects),
-            ...staticPageRoutes.projects,
-          },
-          {
-            textLeft: "About Me",
-            desc: translate(locale.aboutMe),
-            ...staticPageRoutes.aboutMe,
-          },
-          {
-            textLeft: "Take a tour",
-            desc: translate(locale.takeATour),
-            ...staticPageRoutes.takeATour,
-          },
-          {
-            textLeft: "Friends",
-            desc: translate(locale.friends),
-            ...staticPageRoutes.friends,
-          },
-        ],
+        ...staticPageRoutes.aboutMe,
       },
       {
         title: "Language",
