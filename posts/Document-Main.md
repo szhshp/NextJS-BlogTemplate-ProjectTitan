@@ -240,7 +240,6 @@ const About = (): JSX.Element => (
     title={`${translationString({
       textKey: "about",
     })}`}
-    showFooter={!DEBUG_MODE_SINGLE_PAGE}
     content={(
       <Box>
         <Box>JSX Here</Box>
@@ -276,7 +275,6 @@ const markdown = `
 const CustomPage = (): JSX.Element => (
   <PostTemplate
     title="404"
-    showFooter={false}
     showTOC={false}
     content={(
       <>

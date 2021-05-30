@@ -9,13 +9,12 @@ const markdown = `
 const Custom404 = (): JSX.Element => (
   <PostTemplate
     title="404"
-    showFooter={false}
     showTOC={false}
-    content={(
+    content={
       <>
         <MarkdownRenderer content={markdown} />
       </>
-      )}
+    }
   />
 );
 

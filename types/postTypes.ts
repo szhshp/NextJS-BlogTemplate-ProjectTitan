@@ -41,7 +41,6 @@ export enum PostRenderMode {
  * @param date: Post date
  * @param content: Post content, string or JSX
  * @param showTitle
- * @param showFooter
  * @param showCommentBox
  * @param showTOC
  * @param category: category as string
