@@ -40,6 +40,7 @@
   - Mobile Responsive
   - Consistent/Fluent Design
 - NextJS Integration
+  - WebP Integration
   - Server Side Rendering
   - React Hooks
   - Styled Components
