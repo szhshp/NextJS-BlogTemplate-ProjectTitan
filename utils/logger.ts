@@ -12,7 +12,7 @@ type Log =
 
 /**
  * @name logger
- * @description A simple logger with prefix, use it totally as console.log()
+ * @description A simple logger with prefix, use it as console.log()
  */
 export const logger = (args: Log): void => {
   if (typeof args === "string") {
