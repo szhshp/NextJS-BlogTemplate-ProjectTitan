@@ -50,7 +50,7 @@
 ## Documents
 
 - [  Demo Page     ](https://next-js-blog-template-project-titan.vercel.app/)
-- [Documents](https://next-js-blog-template-project-titan.vercel.app/tech/2020/07/27/Document-Main)
+- [Documents](https://next-js-blog-template-project-titan.vercel.app/tech/2021/05/30/Document-Main)
 
 ## Change Log
 
