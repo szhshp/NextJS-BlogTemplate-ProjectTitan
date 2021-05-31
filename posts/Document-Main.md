@@ -47,14 +47,13 @@ const backgroundPictureLib = [
 
 ```
 
-> Before you add background picture, add the pic host into config, see: [WebP Pictures Integration](#WebP-Pictures-Integration)
+> Before you add background picture, add the picture domain into config file, see: [WebP Pictures Integration](#WebP-Pictures-Integration)
 
 
-In order to reduce the picture size, pictures are serves as webP and may display randomly on **each build.**
+Pictures are serves as webP and may display randomly on **each build.**
 
 
 ![](/demo/homepage.png)
-
 
 > You may see different homepage background on each `git push` to your site. 
 
@@ -65,7 +64,7 @@ You can set your favourite quotation on [data\showcaseContent.ts](../data/showca
 Quotations are displayed randomly on **each visit.**
 
 
-![](/demo/showCase.png)
+![](/demo/showcase.png)
 
 
 > You may see different show case content on each access to your site. 
