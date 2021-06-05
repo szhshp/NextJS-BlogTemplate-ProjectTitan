@@ -1,5 +1,5 @@
 ---
-  category: Tech
+category: Tech
 title: 'Project Titan - Document'
 date: '2021-05-30'
 tags: ['Project', 'Gaia']
