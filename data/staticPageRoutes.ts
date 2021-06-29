@@ -8,7 +8,7 @@ export const staticPageRoutes = {
     filepath: "/index",
   },
   aboutMe: {
-    link: "/tech/2021/05/30/SideBarLinksExample",
+    link: "/tech/2021/05/25/SideBarLinksExample",
     filepath: "/[...postRoute]",
   },
   takeATour: {
