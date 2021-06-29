@@ -34,7 +34,7 @@ Then you can add/update the post and push to github.Vercel will handle all CI / 
 
 ### Random Homepage Background
 
-You can set your favourite homepage background on[data\jumbotron.ts](../ data / jumbotron.ts):
+You can set your favourite homepage background on [data\jumbotron.ts](../data/jumbotron.ts):
 
 ``` JS
 const backgroundPictureLib = [
@@ -47,21 +47,20 @@ const backgroundPictureLib = [
 
 ```
 
-  > Before you add background picture, add the picture domain into config file, see: [WebP Pictures Integration](#WebP - Pictures - Integration)
+> Before you add background picture, add the picture domain into config file, see: [WebP Pictures Integration](#WebP-Pictures-Integration)
 
 
-Pictures are serves as webP and may display randomly on ** each build.**
+Pictures are serves as webP and may display randomly on **each build**.
 
+![](/demo/homepage.png)
 
-  ![](/demo/homepage.png)
-
-  > You may see different homepage background on each`git push` to your site. 
+> You may see different homepage background on each `git push` to your site. 
 
 ### Showcase Content
 
-You can set your favourite quotation on[data\showcaseContent.ts](../ data / showcaseContent.ts):
+You can set your favourite quotation on[data\showcaseContent.ts](../data/showcaseContent.ts):
 
-Quotations are displayed randomly on ** each visit.**
+Quotations are displayed randomly on **each visit**.
 
 
   ![](/demo/showcase.png)
@@ -75,7 +74,7 @@ Quotations are displayed randomly on ** each visit.**
 
   > Header is required for all posts.
 
-For post file`posts/jekyllmarkdowntoc.md` with below YAML Header:
+For post file `posts/jekyllmarkdowntoc.md` with below YAML Header:
 
 ```
   ---
@@ -103,9 +102,9 @@ Check the files in `/posts` then you may understand everything.
 
 All images in posts will be progressed and serve as webP picture.
 
-You may need to put the image hosts into[next.config.js](../next.config.js)
+You may need to put the image hosts into [next.config.js](../next.config.js)
 
-  ``` JS
+``` JS
   images: {
     domains: [
       "szhshp.org",
@@ -134,7 +133,7 @@ You don't need to care about it, at all.
 
 Example:
 
-    ```js
+```js
   const a = 100;
   console.log(a);
   const f = (v) => v + 5;
@@ -147,7 +146,7 @@ Implements with [highlight.js](https://github.com/highlightjs/highlight.js)
 
 Change the css in `_app.tsx`:
 
-      ```js
+```js
 import "highlight.js/styles/monokai.css";
 ```
 
@@ -171,7 +170,7 @@ An extra TOC will be automatically rendered at the top of each post.
 
 Check the attributes in `Sidebar.tsx`:
 
-      ```js
+```js
   tocbot.init({
     tocSelector: ".sidebarMid-Toc",
     contentSelector: ".main",
@@ -180,13 +179,13 @@ Check the attributes in `Sidebar.tsx`:
   });
 ```
 
-### Internationalization / i18n
+### Internationalization/i18n
 
 #### Locale Strings
 
 You can add translation set in `locale.ts`
 
-      ```js
+```js
   export const locale = {
     siteTitle: {
       zh: "泰坦計劃",
@@ -206,7 +205,7 @@ console.log(translationString({
 }))
 ```
 
-Usage with hook`useTranslator`:
+Usage with hook `useTranslator`:
 
 ```jsx
 const Example = (): JSX.Element => {
@@ -218,7 +217,7 @@ const Example = (): JSX.Element => {
 
 #### Set Language
 
-  ```jsx
+```jsx
 const Example = (): JSX.Element => {
   const { setLanguage } = useTranslator();
 
@@ -231,7 +230,7 @@ const Example = (): JSX.Element => {
 
 #### Static Pages with React Component
 
-Here is an example of a static page with ** React components ** as content:
+Here is an example of a static page with **React components** as content:
 
 ```jsx
 const About = (): JSX.Element => (
@@ -252,13 +251,13 @@ const About = (): JSX.Element => (
 export default About;
 ```
 
-Put these snippets to`/pages/about.tsx` then NextJS will route it as `/about` ([example](/about)) 
+Put these snippets to `/pages/about.tsx` then NextJS will route it as `/about` ([example](/about)) 
 
-  > See more about[Dynamic Routes](https://nextjs.org/docs/routing/dynamic-routes)
+  > See more about [Dynamic Routes](https://nextjs.org/docs/routing/dynamic-routes)
 
-    #### Static Pages With Markdown
+#### Static Pages With Markdown
 
-Here is an example of a static page with ** pure markdown ** as content:
+Here is an example of a static page with **pure markdown** as content:
 
 ```jsx
 const markdown = `
@@ -289,25 +288,25 @@ export default CustomPage;
 ```
 
 
-## Migrate From ** Project Gaia ** to ** Project Titan **
+## Migrate From **Project Gaia** to **Project Titan**
 
 > That is easy to migrate
 
 1. Provide all posts with valid date in the post header
 
-  ```js
-  ---
-  title: 'Post Title' // You already have this in Jekyll 
-  categories: 'Life' 
-  date : '2017-05-19' // Make sure you have this attribute, date should be in format YYYY-MM-DD
-  tags: ['A', 'B'] 
-  ---
-```
+    ```js
+      ---
+      title: 'Post Title' // You already have this in Jekyll 
+      categories: 'Life' 
+      date : '2017-05-19' // Make sure you have this attribute, date should be in format YYYY-MM-DD
+      tags: ['A', 'B'] 
+      ---
+    ```
 
 2. NextJS is different from Jekyll, you may need to build before deploy. 
-   - Run`yarn run build` or`npm run build` to create a production version
-  - Upload to your pages service
-3.(You can use ** Github Action **, ** Jenkins ** for CI / CD or ** Vercel ** to simplify the build process)
+      - Run `yarn run build` or `npm run build` to create a production version
+      - Upload to your pages service
+3. (You can use **Github Action**, **Jenkins** for CI / CD or **Vercel** to simplify the build process)
 
 
 ## Thanks
