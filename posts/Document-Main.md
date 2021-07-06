@@ -306,7 +306,8 @@ export default CustomPage;
 2. NextJS is different from Jekyll, you may need to build before deploy. 
       - Run `yarn run build` or `npm run build` to create a production version
       - Upload to your pages service
-3. (You can use **Github Action**, **Jenkins** for CI / CD or **Vercel** to simplify the build process)
+3. For the build step, you can use **Github Action**, **Jenkins** for CI / CD or **Vercel** to simplify the build process
+      - You can follow [these steps](#Try-it-out) to deploy on Vercel in 5 mins
 
 
 ## Thanks
