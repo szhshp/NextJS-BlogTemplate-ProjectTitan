@@ -32,7 +32,7 @@ V1.1 @LotsOfOptimization @Personalization @ManyFixes @ACoolShowcase
 - **July 30th 2020**
 V1.0 Released!! Check it out -> [  Demo Page     ](https://titan.szhshp.org/)
 
-## Build your site in ONLY 5 STEPS
+## Build & Deploy your site ONLY IN 5 STEPS
 
 - [  Try it out  ](https://titan.szhshp.org/tech/2021/05/30/Document-Main#Try-it-out)
 
