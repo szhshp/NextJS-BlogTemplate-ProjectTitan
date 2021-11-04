@@ -13,9 +13,9 @@ color: 'primary'
 
 ## Try it out
 
-Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan)
+Github: [Project Titan](https://github.com/szhshp/NextJS-BlogTemplate-ProjectTitan)
 
-1. [Fork](https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan) and STAR it, please. 
+1. [Fork](https://github.com/szhshp/NextJS-BlogTemplate-ProjectTitan) and STAR it, please. 
     1. Go to [Vercel](https://vercel.com/), Login and click 'New Project'
     2. Import your forked repo
 4. Click `Continue`

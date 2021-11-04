@@ -17,7 +17,7 @@ export const footerDef: FooterDef = {
       },
       value: {
         text: "Project Titan",
-        link: "https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan",
+        link: "https://github.com/szhshp/NextJS-BlogTemplate-ProjectTitan",
       },
     },
     {
@@ -35,7 +35,7 @@ export const footerDef: FooterDef = {
       },
       value: {
         text: "Project Gaia",
-        link: "https://github.com/szhielelp/JekyllTheme-ProjectGaia",
+        link: "https://github.com/szhshp/JekyllTheme-ProjectGaia",
       },
     },
     {
@@ -60,7 +60,7 @@ export const footerDef: FooterDef = {
     {
       attr: {
         text: "Github",
-        link: "https://github.com/szhielelp",
+        link: "https://github.com/szhshp",
       },
     },
   ],

@@ -8,9 +8,9 @@ tags: ['Project', 'Gaia', 'Titan']
 
 ## Where the story begins
 
-Github: [Project Titan](https://github.com/szhielelp/NextJS-BlogTemplate-ProjectTitan)
+Github: [Project Titan](https://github.com/szhshp/NextJS-BlogTemplate-ProjectTitan)
 
-- I'm [szhshp](https://szhshp.org/). My first blog is created with Jekyll, it is named `Project Gaia` and released in [Github](https://github.com/szhielelp/JekyllTheme-ProjectGaia)
+- I'm [szhshp](https://szhshp.org/). My first blog is created with Jekyll, it is named `Project Gaia` and released in [Github](https://github.com/szhshp/JekyllTheme-ProjectGaia)
 - In July 2020 I created a similar template `Project Titan` with NextJS
 - The design of `Project Titan` is originated from `Project Gaia`
 - `Project Titan` is for more experienced developer/blogger. 
